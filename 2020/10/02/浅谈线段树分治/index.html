@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="浅谈线段树分治众所周知区间加，区间乘等操作可以利用线段树在单次操作$\mathcal O(\log n)$时间复杂度内完成。对于更复杂的对区间的操作，同样可以利用线段树每次访问$\mathcal O(\log n)$个节点的性质，把标记打在这$\mathcal O(\log n)$个节点上，最后从根开始dfs，将信息下推至叶子节点，以此更快速的解决。   在此介绍两个例题： CF 981E题意:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈线段树分治">
+<meta property="og:url" content="http://yoursite.com/2020/10/02/%E6%B5%85%E8%B0%88%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB/index.html">
+<meta property="og:site_name" content="wh&#39;s blog">
+<meta property="og:description" content="浅谈线段树分治众所周知区间加，区间乘等操作可以利用线段树在单次操作$\mathcal O(\log n)$时间复杂度内完成。对于更复杂的对区间的操作，同样可以利用线段树每次访问$\mathcal O(\log n)$个节点的性质，把标记打在这$\mathcal O(\log n)$个节点上，最后从根开始dfs，将信息下推至叶子节点，以此更快速的解决。   在此介绍两个例题： CF 981E题意:">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-02T12:05:49.682Z">
+<meta property="article:modified_time" content="2020-10-02T12:05:49.682Z">
+<meta property="article:author" content="OIerwanhong">
+<meta property="article:tag" content="OI">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/10/02/%E6%B5%85%E8%B0%88%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>浅谈线段树分治 | wh's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wh's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">wh's blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/02/%E6%B5%85%E8%B0%88%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="OIerwanhong">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wh's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          浅谈线段树分治
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-02 20:05:49" itemprop="dateCreated datePublished" datetime="2020-10-02T20:05:49+08:00">2020-10-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="浅谈线段树分治"><a href="#浅谈线段树分治" class="headerlink" title="浅谈线段树分治"></a>浅谈线段树分治</h2><p>众所周知区间加，区间乘等操作可以利用线段树在单次操作$\mathcal O(\log n)$时间复杂度内完成。<br>对于更复杂的对区间的操作，同样可以利用线段树每次访问$\mathcal O(\log n)$个节点的性质，把标记打在这$\mathcal O(\log n)$个节点上，最后从根开始dfs，将信息下推至叶子节点，以此更快速的解决。  </p>
+<p>在此介绍两个例题：</p>
+<h2 id="CF-981E"><a href="#CF-981E" class="headerlink" title="CF 981E"></a><a target="_blank" rel="noopener" href="https://codeforces.ml/problemset/problem/981/E">CF 981E</a></h2><p>题意:</p>
+<p>给一个长度为$n$ 的序列(初始全为0)和$q$条操作(以$(l,r,x)$表示将$[l,r]$中的每个数都加上$x$.<br>对于$1\le k\le n$,求哪些$k$满足选出若干条操作后序列最大值为$k$.(对于一个$k$,每条操作至多用一次)</p>
+<p>$1\le n,q\le 10^4$</p>
+<a id="more"></a> 
+
+<p>解:首先,可行的$k$集合等于每个位置可达的值的集合 的并集.故求出每个位置可达的值集合即可.<br>对于每个位置$i$维护一个<code>bitset</code>,记为<code>s</code>,设现在考虑的$(l,r,x)$满足$l\le i\le r$,那么$(l,r,x)$对<code>s</code>的贡献就是:<code>s|=(s&lt;&lt;x)</code></p>
+<p>于是暴力做法就显然了:对于$[l,r]$中的每个元素,都做一次<code>s|=(s&lt;&lt;x)</code>即可.时间复杂度上界$\mathcal O(nq\times \frac{n}{w})$,显然不行.  </p>
+<p>接下来就是套路:用线段树分治,把$(l,r,x)$的影响打到线段树的$\mathcal O(\log n)$个节点上.(注意节点上用<code>vector</code>维护增加的值即可,不用维护<code>bitset</code>徒增时间复杂度)最后从根dfs一下,把信息下推至叶子节点即可.叶子节点的<code>bitset or</code>起来的结果就是答案.  </p>
+<p>时间复杂度$\mathcal O(q\log n+\frac{n^2}{w})$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**********/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 10011</span></span><br><span class="line">ll n,q;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">bitset</span>&lt;MAXN&gt;ans;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Segment_Tree</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;ll&gt;t[MAXN&lt;&lt;<span class="number">2</span>|<span class="number">1</span>];</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> rt t[num]</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> tl t[num&lt;&lt;1]</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> tr t[num&lt;&lt;1|1]</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">modify</span><span class="params">(un ql,un qr,ll k,un l=<span class="number">1</span>,un r=n,un num=<span class="number">1</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(ql&lt;=l&amp;&amp;r&lt;=qr)</span><br><span class="line">        &#123;</span><br><span class="line">            rt.push_back(k);<span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        un mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(ql&lt;=mid)modify(ql,qr,k,l,mid,num&lt;&lt;<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(qr&gt;mid)modify(ql,qr,k,mid+<span class="number">1</span>,r,num&lt;&lt;<span class="number">1</span>|<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">bitset</span>&lt;MAXN&gt;pre,un l=<span class="number">1</span>,un r=n,un num=<span class="number">1</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">bitset</span>&lt;MAXN&gt;cur=pre;<span class="comment">//复制父节点的信息</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x:rt)cur|=(cur&lt;&lt;x);</span><br><span class="line">        un mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(l==r)&#123;ans|=cur;<span class="keyword">return</span>;&#125;</span><br><span class="line">        dfs(cur,l,mid,num&lt;&lt;<span class="number">1</span>),dfs(cur,mid+<span class="number">1</span>,r,num&lt;&lt;<span class="number">1</span>|<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;sgt;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">bitset</span>&lt;MAXN&gt;s;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    n=read(),q=read();</span><br><span class="line">    <span class="keyword">while</span>(q--)</span><br><span class="line">    &#123;</span><br><span class="line">        ll l=read(),r=read(),k=read();</span><br><span class="line">        sgt.modify(l,r,k);</span><br><span class="line">    &#125;</span><br><span class="line">    s[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    sgt.dfs(s);</span><br><span class="line">    ll cnt=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">        <span class="keyword">if</span>(ans[i])++cnt;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,cnt);</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">        <span class="keyword">if</span>(ans[i])<span class="built_in">printf</span>(<span class="string">&quot;%lld &quot;</span>,i);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="LOJ-121-「离线可过」动态图连通性"><a href="#LOJ-121-「离线可过」动态图连通性" class="headerlink" title="LOJ #121. 「离线可过」动态图连通性"></a><a target="_blank" rel="noopener" href="https://loj.ac/problem/121">LOJ #121. 「离线可过」动态图连通性</a></h2><p>题意：维护一个无向简单图，支持连边，删边，查询两点是否联通。  </p>
+<p>$n\le 5000,m\le 5\times 10^5$（$m$是操作次数）</p>
+<p>解：首先，无论是LCT,ETT甚至top tree都无法直接维护图，我们需要通过一些操作转变成维护树，才能做。    </p>
+<p>同样考虑暴力。维护一个长为$m$的序列，每个位置维护一个并查集，并离线统计每条边$(u,v)$的存在区间$[s,t]$。将$[s,t]$中的每个位置上$(u,v)$合并。查询直接在并查集上查即可。</p>
+<p>接下来同样套路：利用线段树分治，将$[s,t]+=(u,v)$的操作打到线段树的$\mathcal O(\log n)$个节点上。最后从根开始dfs恢复信息，但是这里复制的代价是每次$\mathcal O(n)$,总时间复杂度会达到$\mathcal O(nm)$，无法接受，不能直接复制。  </p>
+<p>一个显然的想法是，维护一个LCT，到达一个节点时算一下他的影响，然后处理儿子，之后把现在这个节点的操作撤销。这样的时间复杂度是$\mathcal O(m\log m+m\log n)$,按道理可以通过，但我被卡常了。<a target="_blank" rel="noopener" href="https://loj.ac/submission/778676">提交记录</a></p>
+<p><del>在LOJ群请教了神仙之后我知道了</del>有一个奇妙的数据结构：可撤销并查集。不用路径压缩，合并的时候用栈存一下操作，这样就能支持回退最后一步的操作，恰好满足需要。为了保证时间复杂度，需要使用按秩合并。这样的时间复杂度就是$\mathcal O(m\log m+m\log n)$,常数约为LCT做法的时间复杂度的1/8,可以通过了.<a target="_blank" rel="noopener" href="https://loj.ac/submission/778723">提交记录</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/02/%E6%9C%80%E5%90%8E%E4%B9%8B%E4%BD%9C/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/02/%E6%B5%85%E8%B0%88%E6%95%B4%E4%BD%93%E4%BA%8C%E5%88%86/" rel="next" title="浅谈整体二分">
+      浅谈整体二分 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%85%E8%B0%88%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB"><span class="nav-number">1.</span> <span class="nav-text">浅谈线段树分治</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CF-981E"><span class="nav-number">2.</span> <span class="nav-text">CF 981E</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LOJ-121-%E3%80%8C%E7%A6%BB%E7%BA%BF%E5%8F%AF%E8%BF%87%E3%80%8D%E5%8A%A8%E6%80%81%E5%9B%BE%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">LOJ #121. 「离线可过」动态图连通性</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">OIerwanhong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      My friends
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://mrskirt.cc/" title="https:&#x2F;&#x2F;mrskirt.cc&#x2F;" rel="noopener" target="_blank">DXTsT</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://seniorious.cc/" title="https:&#x2F;&#x2F;seniorious.cc&#x2F;" rel="noopener" target="_blank">Seniorious</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.masnn.io/" title="https:&#x2F;&#x2F;blog.masnn.io&#x2F;" rel="noopener" target="_blank">masnn</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Isaunoya/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Isaunoya&#x2F;" rel="noopener" target="_blank">Isaunoya</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.woshiluo.com/" title="https:&#x2F;&#x2F;blog.woshiluo.com&#x2F;" rel="noopener" target="_blank">woshiluo</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/knife-rose" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;knife-rose" rel="noopener" target="_blank">red</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zzlblog.ga/" title="https:&#x2F;&#x2F;www.zzlblog.ga" rel="noopener" target="_blank">Doubeecat</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OIerwanhong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v5.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

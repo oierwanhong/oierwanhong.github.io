@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="学军网络赛A-D 题解补题链接  注：左侧可以跳转">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学军网络赛A-D题解">
+<meta property="og:url" content="http://yoursite.com/2020/10/02/%E5%AD%A6%E5%86%9B%E7%BD%91%E7%BB%9C%E8%B5%9BA-D%20%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:site_name" content="wh&#39;s blog">
+<meta property="og:description" content="学军网络赛A-D 题解补题链接  注：左侧可以跳转">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2020/04/06/Oy7w6IWmpE2cgGl.jpg">
+<meta property="article:published_time" content="2020-10-02T12:05:49.674Z">
+<meta property="article:modified_time" content="2020-10-02T12:05:49.678Z">
+<meta property="article:author" content="OIerwanhong">
+<meta property="article:tag" content="OI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/04/06/Oy7w6IWmpE2cgGl.jpg">
+
+<link rel="canonical" href="http://yoursite.com/2020/10/02/%E5%AD%A6%E5%86%9B%E7%BD%91%E7%BB%9C%E8%B5%9BA-D%20%E9%A2%98%E8%A7%A3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>学军网络赛A-D题解 | wh's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wh's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">wh's blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/02/%E5%AD%A6%E5%86%9B%E7%BD%91%E7%BB%9C%E8%B5%9BA-D%20%E9%A2%98%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="OIerwanhong">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wh's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          学军网络赛A-D题解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-02 20:05:49" itemprop="dateCreated datePublished" datetime="2020-10-02T20:05:49+08:00">2020-10-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="学军网络赛A-D-题解"><a href="#学军网络赛A-D-题解" class="headerlink" title="学军网络赛A-D 题解"></a>学军网络赛A-D 题解</h2><p><a target="_blank" rel="noopener" href="http://115.236.49.52:83/contest/1351">补题链接</a> </p>
+<p>注：左侧可以跳转</p>
+<a id="more"></a> 
+
+<h3 id="T1-核酸检测"><a href="#T1-核酸检测" class="headerlink" title="T1.核酸检测"></a>T1.核酸检测</h3><p>题意概括：没啥好概括的  </p>
+<p>解：最小的花费是$n\times (n+1)-1$<br>考虑构造一种方案即可证明。<br>对于$n$为奇数的情况，可以这样构造：（从左下角开始）<img src="https://i.loli.net/2020/04/06/Oy7w6IWmpE2cgGl.jpg" alt="A2.jpg"></p>
+<p>方框内的两行为一组，自下而上摆即可。注意最上面一行特殊处理。</p>
+<p>对于$n$为偶数的情况，可以旋转一下，也可以从左上角开始类似构造。时间复杂度$\mathcal O(n^2)$</p>
+<p>代码，比较简单就不写注释了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**********/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll n=read();</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>)&#123;<span class="built_in">puts</span>(<span class="string">&quot;0&quot;</span>),<span class="built_in">puts</span>(<span class="string">&quot;1 1&quot;</span>);<span class="keyword">return</span> <span class="number">0</span>;&#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,n*(n+<span class="number">1</span>)<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span>(n&amp;<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(ll i=n;i&gt;<span class="number">1</span>;i-=<span class="number">2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(ll j=<span class="number">1</span>;j&lt;=n+<span class="number">1</span>;++j)</span><br><span class="line">                <span class="keyword">if</span>(j&amp;<span class="number">1</span>)<span class="built_in">printf</span>(<span class="string">&quot;%lld %lld\n&quot;</span>,i,j);</span><br><span class="line">                <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%lld %lld\n&quot;</span>,i<span class="number">-1</span>,j);</span><br><span class="line">            <span class="keyword">for</span>(ll j=n+<span class="number">1</span>;j;--j)</span><br><span class="line">                <span class="keyword">if</span>(j&amp;<span class="number">1</span>)<span class="built_in">printf</span>(<span class="string">&quot;%lld %lld\n&quot;</span>,i<span class="number">-1</span>,j);</span><br><span class="line">                <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%lld %lld\n&quot;</span>,i,j);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(ll j=<span class="number">1</span>;j&lt;=n+<span class="number">1</span>;++j)<span class="built_in">printf</span>(<span class="string">&quot;%lld %lld\n&quot;</span>,<span class="number">1</span>,j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(ll j=<span class="number">1</span>;j&lt;=n<span class="number">-1</span>;j+=<span class="number">2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">                <span class="keyword">if</span>(i&amp;<span class="number">1</span>)<span class="built_in">printf</span>(<span class="string">&quot;%lld %lld\n&quot;</span>,i,j);</span><br><span class="line">                <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%lld %lld\n&quot;</span>,i,j+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span>(ll i=n;i;--i)</span><br><span class="line">                <span class="keyword">if</span>(i&amp;<span class="number">1</span>)<span class="built_in">printf</span>(<span class="string">&quot;%lld %lld\n&quot;</span>,i,j+<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%lld %lld\n&quot;</span>,i,j);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=n;++i)<span class="built_in">printf</span>(<span class="string">&quot;%lld %lld\n&quot;</span>,i,n+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="T2-齐心抗疫"><a href="#T2-齐心抗疫" class="headerlink" title="T2.齐心抗疫"></a>T2.齐心抗疫</h3><p>题意：给一棵树，有点权。定义链$u-&gt;v(w(u)\le w(v))$的价值为 $dist(u,v)\times w(v)$ ($dist(u,v)$表示$(u,v)$的距离，即链长)</p>
+<p>求最大价值。$n\le 5\times 10^4$</p>
+<p>解：设点对$(u,v)满足$$w(u)\le w(v)$.考虑有<br>$$<br>dist(u,v)\times w(v)=\max{dist(u,v)\times w(v),dist(v,u)\times w(u)}<br>$$<br>也就是忽略$w(u)\le w(v)$的限制，答案不变。</p>
+<p>接下来就有各种做法：换根dp，点分，贪心+直径······</p>
+<p>讲一下换根dp的做法。定义$f(u)$表示$u$能到达的最远距离(即$\max_v{dist(u,v)}$)。这是个经典问题，可以用换根dp在$\mathcal O(n)$时间内求解所有$f(u)$。</p>
+<p>而答案$=\max_u{f(u)\times w(u)}$.时间复杂度$\mathcal O(n)$<br>代码，比较经典就不写注释了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**********/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 200011</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ll v,w,nxt;</span><br><span class="line">&#125;e[MAXN];</span><br><span class="line">ll cnt=<span class="number">0</span>,last[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">adde</span><span class="params">(ll u,ll v,ll w)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ++cnt;</span><br><span class="line">    e[cnt].v=v;e[cnt].w=w;</span><br><span class="line">    e[cnt].nxt=last[u],last[u]=cnt;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">ll fa[MAXN],fw[MAXN],len[MAXN],l1[MAXN],l2[MAXN],ans[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(ll u)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    len[u]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll i=last[u];i;i=e[i].nxt)</span><br><span class="line">    &#123;</span><br><span class="line">        ll v=e[i].v;</span><br><span class="line">        <span class="keyword">if</span>(v==fa[u])<span class="keyword">continue</span>;</span><br><span class="line">        fa[v]=u;</span><br><span class="line">        dfs1(v);</span><br><span class="line">        <span class="keyword">if</span>(len[v]+e[i].w&gt;len[l1[u]]+fw[l1[u]])l2[u]=l1[u],l1[u]=v,len[u]=len[v]+e[i].w;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(len[v]+e[i].w&gt;len[l2[u]]+fw[l2[u]])l2[u]=v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(ll u,ll fal=<span class="number">0</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ans[u]=max(fal,len[u]);</span><br><span class="line">    <span class="keyword">for</span>(ll i=last[u];i;i=e[i].nxt)</span><br><span class="line">    &#123;</span><br><span class="line">        ll v=e[i].v;</span><br><span class="line">        <span class="keyword">if</span>(v==fa[u])<span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span>(l1[u]==v)</span><br><span class="line">        &#123;</span><br><span class="line">            dfs2(v,max(fal+e[i].w,len[l2[u]]+fw[l2[u]]+e[i].w));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> dfs2(v,max(fal+e[i].w,len[l1[u]]+fw[l1[u]]+e[i].w));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">ll a[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll n=read();</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=n;++i)a[i]=read(),fw[i]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;n;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        ll u=read(),v=read();</span><br><span class="line">        adde(u,v,<span class="number">1</span>),adde(v,u,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    dfs1(<span class="number">1</span>),dfs2(<span class="number">1</span>);</span><br><span class="line">    ll res=-INF;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=n;++i)umax(res,a[i]*ans[i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,res);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="T3-病毒研究"><a href="#T3-病毒研究" class="headerlink" title="T3.病毒研究"></a>T3.病毒研究</h3><p>题意：给一个序列$a_{1…n}(a_0=0)$.有一种病毒，活性为$[1,a_n]$中的随机整数。设病毒活性为$x$,若$i$满足$a_{i-1}&lt;x\le a_i$,则可知病毒在状态$i$.（只能知道病毒的状态，不能知道具体活性，否则就是弱智题）</p>
+<p>有$m$种操作$(v_i,w_i)$,可以花费$v_i$的代价将病毒活性减少$w_i$.当病毒活性$\le 0$时会死亡。  （每个操作可以使用任意次；每次操作之后都可以查询病毒的状态）</p>
+<p>求让病毒处于状态1的最小期望代价乘$a_n$的值。如果不能保证病毒最后一定能处于状态1，则输出-1。</p>
+<p>$m\le a_n\le 2000,a$严格递增.</p>
+<p>这题太神，赛时WA到自闭</p>
+<p>解：区间dp。令$dp(l,r)$表示病毒活性在区间$[l,r]$内的最小期望代价乘$r-l+1$的值.</p>
+<ul>
+<li><p>当$l,r$状态相同：</p>
+<ul>
+<li>若状态为1，$dp(l,r)=0$</li>
+<li>否则，枚举所有操作转移。注意只能考虑$w_i&lt;l$的操作，避免病毒死亡。</li>
+</ul>
+</li>
+<li><p>否则，必然由若干段状态相同的区间构成。求这些区间的和即可。</p>
+</li>
+</ul>
+<p>用记忆化搜索实现，$dp(1,a_n)$即为答案。为INF时答案即为-1。<br>时间复杂度显然$\mathcal O(a_n^2m)$,有62pts。</p>
+<p>若区间$[l,r]$满足$l,r$状态不同，则称$[l,r]$为“有效区间”。<br>注意到当$l,r$状态相同且不为1时，可能要连续操作多次才能到达“有效区间”。于是可以先预处理一下完全背包，处理出$f(i)$表示将病毒活性减少$i$的最小代价。然后强制让其一步到达“有效区间”（或状态1）。<br>另外，求解“有效区间”时，只有边缘两段是“有效区间”，中间都不是。预处理出每一段的代价的前缀和即可$\mathcal O(1)$求出中间部分的代价之和。</p>
+<p>看似只是常数上的优化，但由于求解有效区间时只递归求解边缘两段，所以需要枚举操作的区间皆形如$[x,a_i],[a_{i-1}+1,x]$($x$的状态是$i$)，只有$2a_n$个，所以这样的时间复杂度是$\mathcal O(a_nm+a_n^2)$,可以通过。</p>
+<p>代码，写了点注释。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**********/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 2011</span></span><br><span class="line">ll dp[MAXN][MAXN],a[MAXN],status[MAXN],n,m;<span class="comment">//status[x]表示x所处的状态</span></span><br><span class="line">ll f[MAXN],sum[MAXN];</span><br><span class="line"><span class="function">ll <span class="title">mdfs</span><span class="params">(ll l,ll r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(dp[l][r]&lt;INF)<span class="keyword">return</span> dp[l][r];<span class="comment">//记忆化（初值为INF）</span></span><br><span class="line">    ll &amp;cur=dp[l][r];</span><br><span class="line">    <span class="keyword">if</span>(status[l]==status[r])<span class="comment">//不是“有效区间”</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(status[l]==<span class="number">1</span>)<span class="keyword">return</span> cur=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;l;++i)</span><br><span class="line">            <span class="keyword">if</span>(f[i]&lt;INF&amp;&amp;(status[r-i]==<span class="number">1</span>||status[l-i]!=status[r-i]))umin(cur,mdfs(l-i,r-i)+f[i]*(r-l+<span class="number">1</span>));<span class="comment">//强行到达有效区间或状态1</span></span><br><span class="line">        <span class="keyword">return</span> cur;</span><br><span class="line">    &#125;</span><br><span class="line">    cur=mdfs(l,a[status[l]])+(sum[status[r]<span class="number">-1</span>]-sum[status[l]])+mdfs(a[status[r]<span class="number">-1</span>]+<span class="number">1</span>,r);<span class="comment">//只递归求解边缘两段，中间用前缀和优化</span></span><br><span class="line">    <span class="keyword">return</span> cur;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll t=read();</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        n=read(),m=read();</span><br><span class="line">        <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">        &#123;</span><br><span class="line">            a[i]=read();</span><br><span class="line">            <span class="keyword">for</span>(ll j=a[i<span class="number">-1</span>]+<span class="number">1</span>;j&lt;=a[i];++j)status[j]=i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=a[n];++i)f[i]=INF;</span><br><span class="line">        f[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=m;++i)<span class="comment">//完全背包预处理</span></span><br><span class="line">        &#123;</span><br><span class="line">            ll v=read(),w=read();</span><br><span class="line">            <span class="keyword">for</span>(ll j=w;j&lt;=a[n];++j)</span><br><span class="line">                umin(f[j],f[j-w]+v);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=a[n];++i)</span><br><span class="line">            <span class="keyword">for</span>(ll j=i;j&lt;=a[n];++j)dp[i][j]=INF;</span><br><span class="line">        <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=n;++i)<span class="comment">//预处理前缀和</span></span><br><span class="line">        &#123;</span><br><span class="line">            sum[i]=sum[i<span class="number">-1</span>]+mdfs(a[i<span class="number">-1</span>]+<span class="number">1</span>,a[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,mdfs(<span class="number">1</span>,a[n])&gt;=INF?<span class="number">-1l</span>l:mdfs(<span class="number">1</span>,a[n]));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="T4-抗疫斗争"><a href="#T4-抗疫斗争" class="headerlink" title="T4.抗疫斗争"></a>T4.抗疫斗争</h3><p>题意：有一个博弈游戏：有$m$颗石子，A先手，B后手。<strong>每个人取的石子数量不能超过前者所取的数量</strong>。取走最后石子者胜。令$h(i)$表示A为了必胜，第一次至少取的石子数量。</p>
+<p>令$f(i)=\sum_{m|i}h(m)$,求$\sum_{i=1}^nf(i)$ .</p>
+<p>95%数据满足$n\le 5\times 10^{13}$；100%数据满足$1\le n\le 10^{15}$</p>
+<p>解：首先要高效求解$h(x)$.注意到当$x$为奇数，$h(x)=1$.当$x$为偶数时，取奇数的一方必败（因为给对方剩下了奇数颗）。</p>
+<p>也就是<br>$$<br>h(i)=<br>\begin{cases}<br>1 (x\ mod\ 2=1)\<br>2h(\frac{x}{2})(x\ mod\ 2=0)\<br>\end{cases}<br>$$<br>这玩意，就是lowbit啊。</p>
+<p>又因为<br>$$<br>\sum_{i=1}^nf(i)=\sum_{i=1}^n\lfloor\frac{n}{i}\rfloor lowbit(i)<br>$$<br>然后就能$\mathcal O(n)$做了。</p>
+<p>进一步优化：</p>
+<p>算法一：（我在比赛时的做法）</p>
+<p>这个式子一看就很能整除分块。考虑计算$lowbit(i)$的区间和。显然$[1,i]$中偶数有$\lfloor\frac{i}{2}\rfloor$个,其中4的倍数又有$\lfloor\frac{i}{4}\rfloor$个······所以$S(i)=\sum_{j=1}^ilowbit(j)$可以这样在$\mathcal O(\log n)$时间内求解：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ll mod=<span class="number">998244353</span>;</span><br><span class="line"><span class="function">ll <span class="title">calc</span><span class="params">(ll n)</span><span class="comment">//计算S(n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll ans=<span class="number">0</span>,cur=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(n)</span><br><span class="line">    &#123;</span><br><span class="line">        ans=(ans+(n-(n&gt;&gt;<span class="number">1</span>))*cur)%mod;</span><br><span class="line">        n&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">        cur&lt;&lt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans%mod;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总时间复杂度是$\mathcal O(\sqrt n\times\log n)$然后就能95pts了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**********/</span></span><br><span class="line"><span class="keyword">const</span> ll mod=<span class="number">998244353</span>;</span><br><span class="line">ll calc(ll n)......</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll n=read(),ans=<span class="number">0</span>,l,r;</span><br><span class="line">    <span class="keyword">for</span>(l=<span class="number">1</span>;l&lt;=n;l=r+<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        r=n/(n/l);</span><br><span class="line">        <span class="comment">//ans=(ans+(calc(r)-calc(l-1))*(n/l))%mod;</span></span><br><span class="line">        ans=(ans+calc(r)*(n/l-n/(r+<span class="number">1</span>))%mod)%mod;</span><br><span class="line">        <span class="comment">//这两种写法都正确，但显然后者常数约为前者的1/2</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>杨爷：卡卡常就能A了啊（我：？？？？我能说我95pts都是卡过常的吗)</p>
+<p>算法二：  </p>
+<p>枚举$lowbit(i)$的取值。记$g(n)=\sum_{i=1}^n \lfloor\frac{n}{i}\rfloor $（显然$g(n)$是可以$\mathcal O(\sqrt n)$求的）<br>$$<br>\sum_{i=1}^n\lfloor\frac{n}{i}\rfloor lowbit(i)=g(n)+\sum_{k=1}^{2^k\le n}2^{k-1}g(\lfloor\frac{n}{2^k}\rfloor )<br>$$</p>
+<p>$$<br>T(n)=\sum _k\sqrt {\frac{n}{2^k}}=\sqrt n\sum_k\sqrt \frac{1}{2^k}=\mathcal O(\sqrt n)<br>$$</p>
+<p>另外，求$g(n)=\sum_{i=1}^n \lfloor\frac{n}{i}\rfloor $我一开始用整除分块被卡常了，有另外一个神仙科技可以求，见代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**********/</span></span><br><span class="line"><span class="keyword">const</span> ll mod=<span class="number">998244353</span>;</span><br><span class="line"><span class="function">ll <span class="title">upd</span><span class="params">(ll x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (x%mod+mod)%mod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">g</span><span class="params">(ll n)</span><span class="comment">//O(sqrt n)求g(n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll t=<span class="built_in">sqrt</span>(n),sum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=t;++i)sum+=n/i;</span><br><span class="line">    <span class="keyword">return</span> upd(<span class="number">2</span>*sum-t*t);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll n=read(),ans=g(n);</span><br><span class="line">    <span class="keyword">for</span>(ll k=<span class="number">1</span>;(<span class="number">1l</span>l&lt;&lt;k)&lt;=n;++k)</span><br><span class="line">        ans=(ans+(<span class="number">1l</span>l&lt;&lt;(k<span class="number">-1</span>))*g(n/(<span class="number">1l</span>l&lt;&lt;k)))%mod;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>为什么没有E？这。。官方题解说的动态半平面交和凸包二分我都不会啊</p>
+<h3 id="End"><a href="#End" class="headerlink" title="End."></a>End.</h3>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/02/CF1325E/" rel="prev" title="CF1325E">
+      <i class="fa fa-chevron-left"></i> CF1325E
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/02/NOIOL%E9%A2%98%E8%A7%A3/" rel="next" title="NOIOL题解">
+      NOIOL题解 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E5%86%9B%E7%BD%91%E7%BB%9C%E8%B5%9BA-D-%E9%A2%98%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text">学军网络赛A-D 题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1-%E6%A0%B8%E9%85%B8%E6%A3%80%E6%B5%8B"><span class="nav-number">1.1.</span> <span class="nav-text">T1.核酸检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T2-%E9%BD%90%E5%BF%83%E6%8A%97%E7%96%AB"><span class="nav-number">1.2.</span> <span class="nav-text">T2.齐心抗疫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T3-%E7%97%85%E6%AF%92%E7%A0%94%E7%A9%B6"><span class="nav-number">1.3.</span> <span class="nav-text">T3.病毒研究</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T4-%E6%8A%97%E7%96%AB%E6%96%97%E4%BA%89"><span class="nav-number">1.4.</span> <span class="nav-text">T4.抗疫斗争</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#End"><span class="nav-number">1.5.</span> <span class="nav-text">End.</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">OIerwanhong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      My friends
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://mrskirt.cc/" title="https:&#x2F;&#x2F;mrskirt.cc&#x2F;" rel="noopener" target="_blank">DXTsT</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://seniorious.cc/" title="https:&#x2F;&#x2F;seniorious.cc&#x2F;" rel="noopener" target="_blank">Seniorious</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.masnn.io/" title="https:&#x2F;&#x2F;blog.masnn.io&#x2F;" rel="noopener" target="_blank">masnn</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Isaunoya/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Isaunoya&#x2F;" rel="noopener" target="_blank">Isaunoya</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.woshiluo.com/" title="https:&#x2F;&#x2F;blog.woshiluo.com&#x2F;" rel="noopener" target="_blank">woshiluo</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/knife-rose" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;knife-rose" rel="noopener" target="_blank">red</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zzlblog.ga/" title="https:&#x2F;&#x2F;www.zzlblog.ga" rel="noopener" target="_blank">Doubeecat</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OIerwanhong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v5.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

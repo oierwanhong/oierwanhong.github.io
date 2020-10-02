@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="NOI Online sol好像都是sb题,但我没AK啊,可能我是sb吧 提高组游记都是流水账,懒得写了. T1简化题意:给序列$A,B(|A|&#x3D;|B|&#x3D;n)$和$m$种操作,1操作可以让$u_i,v_i$都+1或-1,2操作可以让$u_i+1,v_i-1$或$u_i-1,v_i+1$,问能否让$A&#x3D;B$   $n,m\le 10^5$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOIOL题解">
+<meta property="og:url" content="http://yoursite.com/2020/10/02/NOIOL%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:site_name" content="wh&#39;s blog">
+<meta property="og:description" content="NOI Online sol好像都是sb题,但我没AK啊,可能我是sb吧 提高组游记都是流水账,懒得写了. T1简化题意:给序列$A,B(|A|&#x3D;|B|&#x3D;n)$和$m$种操作,1操作可以让$u_i,v_i$都+1或-1,2操作可以让$u_i+1,v_i-1$或$u_i-1,v_i+1$,问能否让$A&#x3D;B$   $n,m\le 10^5$">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-02T12:05:49.674Z">
+<meta property="article:modified_time" content="2020-10-02T12:05:49.674Z">
+<meta property="article:author" content="OIerwanhong">
+<meta property="article:tag" content="OI">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/10/02/NOIOL%E9%A2%98%E8%A7%A3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>NOIOL题解 | wh's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wh's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">wh's blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/02/NOIOL%E9%A2%98%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="OIerwanhong">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wh's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          NOIOL题解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-02 20:05:49" itemprop="dateCreated datePublished" datetime="2020-10-02T20:05:49+08:00">2020-10-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="NOI-Online-sol"><a href="#NOI-Online-sol" class="headerlink" title="NOI Online sol"></a>NOI Online sol</h2><p>好像都是sb题,但我没AK啊,可能我是sb吧</p>
+<h2 id="提高组"><a href="#提高组" class="headerlink" title="提高组"></a>提高组</h2><p>游记都是流水账,懒得写了.</p>
+<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>简化题意:给序列$A,B(|A|=|B|=n)$和$m$种操作,1操作可以让$u_i,v_i$都+1或-1,2操作可以让$u_i+1,v_i-1$或$u_i-1,v_i+1$,问能否让$A=B$  </p>
+<p>$n,m\le 10^5$  </p>
+<a id="more"></a>
+
+<p>如果让$u+1$且$u,v$间有2操作,则可以使用2操作让$u-1,v+1$,即对$u$的+1操作转移到$v$上.也就是说,对于由2操作构成的连通块$S$,对任何一个点$x\in S$的+1操作都能转移到另一个点$y\in S$上.因此将整个联通块看成一个点(显然可以并查集做到,以下的点都指这些点).点权为$\sum_{x\in S}b_i-a_i$.    </p>
+<p>此时问题转化为,只有1操作(可以将其看作无向边),能否让所有点点权为0.      </p>
+<p>考虑一个奇环$R$,对$u,v\in R$执行1操作,可以让任意两点$x,y\in R$都+1或-1.所以对于非二分图连通块$G$,若$\sum_{S\in G}W_S$为偶数则可以做到,否则不能.对于二分图连通块$G$,若$\sum_{S\in G}W_S=0$则可以做到.    </p>
+<p>时间复杂度$O((n+m)\log n)$,这个log是路径压缩的并查集的.    </p>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/237932/">code</a></p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>题意:给一个排列$p$,要支持两种操作:     </p>
+<ul>
+<li>交换$x,x+1$  </li>
+<li>询问$k$次冒泡排序之后的逆序对数  </li>
+</ul>
+<p>$n,m\le 2\times 10^5,k\le 2^{30}$        </p>
+<p>两个性质:  </p>
+<ul>
+<li><p>$n$次冒泡之后数列有序,不存在逆序对  </p>
+</li>
+<li><p>记$inv(i)=\sum_{j\lt i}[p_j\gt p_i]$,则$k$次冒泡之后<br>$$<br>\sum inv’(i)=\sum max(inv(i)-k,0)<br>$$</p>
+<p>BIT预处理一下$inv$,然后两个BIT维护就好.<br>修改的时候只影响两个位置,BIT上直接搞.<br>时间复杂度:$O((n+m)\log n)$    </p>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/237934/">code</a></p>
+</li>
+</ul>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>给一个正整数环$A$,每次询问间隔$k$的数对乘积之和的最大值(你可以任意改变环的顺序)    </p>
+<p>$n,m\le 2\times 10^5$      </p>
+<p>简单的贪心:先考虑$gcd(n,k)=1$的情况:     </p>
+<p>最大的边上放第二大,第三大;第二大边上放第四大(已经在最大边上)    </p>
+<p><del>和暴力对拍下可知正确性</del>    </p>
+<p>简单来说就是当前可选集合中最大的应该选尽量大的放在边上    </p>
+<p>比如说$a&gt;b&gt;c$,如果$(a,c,b)$那么贡献是$ac+bc$,而$(a,b,c)$贡献是$ab+bc$.因为$b&gt;c$所以$ac&gt;bc$.    </p>
+<p>对于不互质的情况,可以拆成$gcd(n,k)$个大小为$\frac{n}{gcd(n,k)}$的环,每个环如上处理即可.暴力做时间复杂度是$O(n^2)$,考虑相同的$gcd(n,k)$结果必然相同,记忆化一下就好了,时间复杂度$O(n\sqrt n)$      </p>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/237936/">code</a></p>
+<h2 id="普及组"><a href="#普及组" class="headerlink" title="普及组"></a>普及组</h2><p>其实也就T2比较玄妙吧</p>
+<h3 id="T1-1"><a href="#T1-1" class="headerlink" title="T1"></a>T1</h3><p>不会(</p>
+<h3 id="T2-1"><a href="#T2-1" class="headerlink" title="T2"></a>T2</h3><p>题意:求和为$n$的本质不同正整数序列数.<br>$n\le 10^5$<br>暴力背包有70pts.<br>做法一:生成函数+五边形数做法:<br>记答案序列的生成函数为<br>$$\sum_{i=0}p(i)x^i$$<br>五边形数定理:<br>$$<br>\phi (n)=\prod_{i=1}(1-x^i)=\sum_{i=0}(-1)^ix^{\frac{3k^2\pm k}{2}}<br>$$</p>
+<p>$$<br>\<br>\frac{1}{\phi(n)}=\sum_{i=0}p(i)x^i<br>$$</p>
+<p>即<br>$$<br>(\sum_{i=0}(-1)^ix^{\frac{3k^2\pm k}{2}})\times(\sum_{i=0}p(i)x^i)=1<br>$$<br>能对$p(i)$产生贡献的项是$\mathcal O(\sqrt n)$级别的,所以总时间复杂度$\mathcal O(n\sqrt n)$  </p>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/231995/">code</a><br>做法二:分块背包:<br>暴力的做法显然:$f(i,j)$表示用$[1,i]$的数凑出$j$的方案数.转移类似完全背包,时空都是$\mathcal O(n^2)$    </p>
+<p>考虑取一整数$m$,用$g(i,j)$表示用$i$个不小于$m$的数凑出$j$的方案数.    </p>
+<p>转移就是整体加一,或加入$m$这个数,即<br>$$<br>g(i,j)=g(i-1,j-m)+g(i-1,j-i)<br>$$<br>显然只有$i\le n/m$的$i$是有意义的,这部分的时间复杂度是$\mathcal O(n/m\times n)$,同时用$f$算用$&lt;m$的数凑出$n$的方案数,总时间复杂度是$\mathcal O((m+n/m)n)$,显然$m=\sqrt n$的时候最优,最优的时空复杂度为$\mathcal O(n\sqrt n)$     </p>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/231995/">code</a></p>
+<h3 id="T3-1"><a href="#T3-1" class="headerlink" title="T3"></a>T3</h3><p>相比于T2,其实这题更套路.  </p>
+<p>首先$n\le 100$暗示Floyd,先求出$dis^0(i,j)$表示$i-&gt;j$不用魔法的最短距离<br>设$dis^k(i,j)$表示$i-&gt;j$恰用$k$次魔法的最短距离 (由于所有边权非负,$dis^k(i,j)$关于$k$单调递减所以$dis^k(1,n)$即为答案,求出它即可.)  </p>
+<p>若已知$dis^{k-1},dis^1$,则<br>$$dis^k(i,j)=\min_{1\le p\le n} \lbrace dis^{k-1}(i,p)+dis^1(p,j) \rbrace$$<br>一个广义矩阵乘法的形式,如果知道了$dis^1,$直接矩阵快速幂就好,时间复杂度$\mathcal O(n^3\log K)$<br>求$dis^1$也简单,枚举每条边$(u,v,w)$做为变成负权的那条边,那么$dis^1(s,t)=dis^0(s,u)-w +dis^0(v,t)$,时间复杂度$\mathcal O(n^2m)$  </p>
+<p>总时间复杂度$\mathcal O(n^3\log K+n^2m)$      </p>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/232078/">code</a></p>
+<p>奇怪的NOI Online比赛,出了各种锅<del>反正不要钱,就当玩玩也行</del></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/02/%E5%AD%A6%E5%86%9B%E7%BD%91%E7%BB%9C%E8%B5%9BA-D%20%E9%A2%98%E8%A7%A3/" rel="prev" title="学军网络赛A-D题解">
+      <i class="fa fa-chevron-left"></i> 学军网络赛A-D题解
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/02/%E6%B5%85%E8%B0%88%E4%B8%8A%E4%B8%8B%E7%95%8C%E7%BD%91%E7%BB%9C%E6%B5%81/" rel="next" title="浅谈上下界网络流">
+      浅谈上下界网络流 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NOI-Online-sol"><span class="nav-number">1.</span> <span class="nav-text">NOI Online sol</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E9%AB%98%E7%BB%84"><span class="nav-number">2.</span> <span class="nav-text">提高组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1"><span class="nav-number">2.1.</span> <span class="nav-text">T1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T2"><span class="nav-number">2.2.</span> <span class="nav-text">T2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T3"><span class="nav-number">2.3.</span> <span class="nav-text">T3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%AE%E5%8F%8A%E7%BB%84"><span class="nav-number">3.</span> <span class="nav-text">普及组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1-1"><span class="nav-number">3.1.</span> <span class="nav-text">T1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T2-1"><span class="nav-number">3.2.</span> <span class="nav-text">T2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T3-1"><span class="nav-number">3.3.</span> <span class="nav-text">T3</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">OIerwanhong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      My friends
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://mrskirt.cc/" title="https:&#x2F;&#x2F;mrskirt.cc&#x2F;" rel="noopener" target="_blank">DXTsT</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://seniorious.cc/" title="https:&#x2F;&#x2F;seniorious.cc&#x2F;" rel="noopener" target="_blank">Seniorious</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.masnn.io/" title="https:&#x2F;&#x2F;blog.masnn.io&#x2F;" rel="noopener" target="_blank">masnn</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Isaunoya/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Isaunoya&#x2F;" rel="noopener" target="_blank">Isaunoya</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.woshiluo.com/" title="https:&#x2F;&#x2F;blog.woshiluo.com&#x2F;" rel="noopener" target="_blank">woshiluo</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/knife-rose" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;knife-rose" rel="noopener" target="_blank">red</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zzlblog.ga/" title="https:&#x2F;&#x2F;www.zzlblog.ga" rel="noopener" target="_blank">Doubeecat</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OIerwanhong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v5.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

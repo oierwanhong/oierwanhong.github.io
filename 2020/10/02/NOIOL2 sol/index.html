@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="NOIOL2 题解比上次办的好多了至少有LaTeX了 注:提高组的题,如果在acwing上提交,请手动O2,否则可能会被卡常(我放的代码在洛谷等OJ上是不用O2也可以A的) 提高组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOIOL2-sol">
+<meta property="og:url" content="http://yoursite.com/2020/10/02/NOIOL2%20sol/index.html">
+<meta property="og:site_name" content="wh&#39;s blog">
+<meta property="og:description" content="NOIOL2 题解比上次办的好多了至少有LaTeX了 注:提高组的题,如果在acwing上提交,请手动O2,否则可能会被卡常(我放的代码在洛谷等OJ上是不用O2也可以A的) 提高组">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-02T12:05:49.666Z">
+<meta property="article:modified_time" content="2020-10-02T12:05:49.674Z">
+<meta property="article:author" content="OIerwanhong">
+<meta property="article:tag" content="OI">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/10/02/NOIOL2%20sol/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>NOIOL2-sol | wh's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wh's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">wh's blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/02/NOIOL2%20sol/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="OIerwanhong">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wh's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          NOIOL2-sol
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-02 20:05:49" itemprop="dateCreated datePublished" datetime="2020-10-02T20:05:49+08:00">2020-10-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="NOIOL2-题解"><a href="#NOIOL2-题解" class="headerlink" title="NOIOL2 题解"></a>NOIOL2 题解</h2><p>比上次办的好多了<del>至少有LaTeX了</del></p>
+<p>注:提高组的题,如果在<code>acwing</code>上提交,请手动O2,否则可能会被卡常(我放的代码在洛谷等OJ上是不用O2也可以A的)</p>
+<h2 id="提高组"><a href="#提高组" class="headerlink" title="提高组"></a>提高组</h2><a id="more"></a>
+
+<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>题意:给出$a,b,k$,要求$a$的倍数格子填颜色1,$b$的倍数格子填颜色2,是$ab$倍数的格子颜色任选.求是否存在一种填法,满足忽略掉无色格子后不存在$k$个连续的同色格子.</p>
+<p>$1\le a,b,k\le 10^9$</p>
+<p>解:若$k=1$,必然不存在.</p>
+<p>若$a&lt;b,a,b$互素,则$ax\ mod\ b$必然取遍$[0,b-1]$.设$ax\ mod\ b=1$.则$[1,b-1]$这一段中恰有$\lfloor \frac{(b-2)}{a}\rfloor +1$ 个格子是颜色1.也就是无论是$ab$倍数的格子怎么填,都至少有$\lfloor \frac{(b-2)}{a}\rfloor +1$个连续的无色格子.且将$ab$倍数的格子都填颜色2时,可以得到至多有$\lfloor \frac{(b-2)}{a}\rfloor +1$个连续的无色格子.所以当且仅当$\lfloor \frac{(b-2)}{a}\rfloor +1 &lt; k$时有解.</p>
+<p>对于一般情况,令$a/gcd(a,b),b/gcd(a,b)$即可规约到$a,b$互素之情况.</p>
+<p>每组数据时间复杂度$\mathcal O(\log min(a,b))$ </p>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/296264/">code</a></p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>题意:给一个长度为$n$的序列$A$.定义$f(l,r)$为$A[l,r]$中不同的数字个数.求<br>$$<br>(\sum_{i=1}^n\sum_{j=i}^nf(l,r)^2 )mod\ 10^9+7<br>$$<br>$n\le 10^6$,$1\le A_i\le 10^9$</p>
+<p>暴力:先离散化,然后枚举两个端点统计即可.时间复杂度$\mathcal O(n^2)$</p>
+<p>考虑优化:(这里记$i$为右端点,$j$为左端点)</p>
+<p>考虑加入$i$后的贡献,即$f(j,i)-f(j,i-1)$.求出$last(A_i)$表示$A_i$上一次出现的位置(未出现过则为0)</p>
+<ul>
+<li>对于$j\le last(A_i),f(j,i)=f(j,i-1)$</li>
+<li>否则$f(j,i)=f(j,i-1)+1$ </li>
+</ul>
+<p>然后$\sum_{j=1}^i f(j,i)^2$就是$i$对答案的贡献了.这个东西显然就是区间加,区间平方和.这个东西线段树好像不能直接做.考虑$f(j,i-1)^2$到$f(j,i)^2$的变化(对于$j&gt;last(A_i)$)<br>$$<br>f(j,i-1)^2-f(j,i)^2=(f(j,i)+1)^2-f(j,i)^2\<br>=2f(j,i)+1<br>$$<br>所以只需要区间加,区间和就行了.线段树即可维护.时间复杂度$\mathcal O(n\log n)$ (据说有点卡常,但我觉得常数正常的线段树都能过啊….)</p>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/296318/">code</a></p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>借鉴(chao xi)了<a target="_blank" rel="noopener" href="https://www.yijan.co/noiol-t3-match/">神仙yijan的题解</a></p>
+<p>题意:给一棵树,恰$n/2$个白点,$n/2$个黑点,每次将黑白点两两配对,求配对$n/2$次后<strong>恰有</strong>$i$对点为祖先-后代关系 的数量.(对998244353取模).</p>
+<p>$n\le 5000$</p>
+<p>解:恰$i$对不好求,因为树形dp时状态至少有三维,因此复杂度不会低于$\mathcal O(n^3)$</p>
+<p>考虑求解”<strong>钦定</strong>(至少)$i$对点为祖先-后代 关系的数量”.记$dp(u,i)$表示以$u$为根的子树中钦定$i$对点的方案数.考虑转移:</p>
+<ul>
+<li>枚举子树$v$中已配对的点的数量,做树形背包的转移</li>
+<li>将当前点和某个后代配对</li>
+</ul>
+<p>前者就是树形背包,因此时间复杂度为$\mathcal O(n^2)$(原理就是每对点仅在LCA处贡献一次),后者显然是$\mathcal O(n^2)$ .以此可以求出$f(i)$表示整棵树中钦定$i$对点,剩下的任意匹配:<br>$$<br>f(i)=dp(1,i)\times (n/2-i)!<br>$$</p>
+<p>求出$f$后,即可求原答案:记$g(i)$表示<strong>恰有</strong>$i$对点为祖先-后代关系 的数量.因为有<br>$$<br>C^j_i=\frac{j!}{i!(j-i)!}\<br>f(i)=\sum_{j\ge i}C_i^j g(j)<br>$$<br>二项式反演得:<br>$$<br>g(i)=\sum_{j\ge i}(-1)^{j-i} C^j_if(j)<br>$$<br>这个能预处理阶乘及其逆元算了. 时间复杂度$\mathcal O(n^2)$</p>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/296326/">code</a></p>
+<h2 id="普及组"><a href="#普及组" class="headerlink" title="普及组"></a>普及组</h2><h3 id="T1-1"><a href="#T1-1" class="headerlink" title="T1"></a>T1</h3><p>题意懒得概括了.</p>
+<p>贪心一下,先选大的$a$直到满足.直接排序再二分就行.时间复杂度$\mathcal O(n\log n)$<br><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/297331/">code</a></p>
+<h3 id="T2-1"><a href="#T2-1" class="headerlink" title="T2"></a>T2</h3><p>题意懒得概括了.</p>
+<p>略有点毒.</p>
+<p>首先bfs是很显然的,记$dis(x,y,t1,t2)$表示到$(x,y)$且隐身$t1$次,传送$t2$次所需要的最小时间.枚举八个方向于传送的四个方向转移即可.</p>
+<p>但这题有点毒,直接做MLE+TLE.$dis$数组不会爆空间,但队列会(因为要存4个元素).解决MLE一个方法是把$x,y$压成一个整数,$t1,t2$压成另一个整数,用到的时候解码.这样空间在300MB左右,能过.解决TLE的话,首先是隐身不要看成技能,而是看成走到一个被观察到的格子后需要付出的代价.另外加一个最优性剪枝,就能过了.</p>
+<p>另外,预处理格子是否被覆盖的时候,暴力搞是$\mathcal O(n^4)$的,有两种解决方案:</p>
+<ul>
+<li>多源bfs</li>
+<li>对覆盖到的行差分一下,最后做个前缀和,若该位置被覆盖至少一次就是被观察到的.</li>
+</ul>
+<p>最后注意一下即使隐身也不能走到有观察员的位置.时间复杂度$\mathcal O(nmC1C2)$ <del>准确的说是O(能过)</del></p>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/297454/">code</a></p>
+<h3 id="T3-1"><a href="#T3-1" class="headerlink" title="T3"></a>T3</h3><p>题意:有$2n$栋楼房,高度均在$[1,m]$之间.求满足以下条件的方案数,对998244353取模.</p>
+<ul>
+<li>前$n$栋楼房高度单调递增,后$n$栋楼房高度单调递减</li>
+<li>第$x$栋楼房高度和第$y$栋相等,$x,y$是给定的整数.</li>
+</ul>
+<p>$1\le x&lt;y\le 2n,1\le n,m\le 10^5$</p>
+<p>解:考虑这样的问题:$n$栋楼房,允许的高度范围为$m$,则单调递增的方案数为?</p>
+<p>首先,对于一个方案,必然有且仅有一种方案满足改变其顺序能得到一个单调递增序列.也就是所求等价于本质不同序列数.这个东西就是:<br>$$<br>f(n,m)= C^{n+m-1}_n<br>$$<br>这个式子用一个隔板法就能搞出来了.</p>
+<p>接下来对$x,y$分类讨论以下:(已知$x&lt;y$)</p>
+<ul>
+<li>$x,y\le n$,枚举他们的高度$i$,则答案即为$\sum_{i=1}^m f(x-1,i)\times f(n-y,m-i+1)$</li>
+<li>$x,y&gt;n$同理.</li>
+<li>$x\le n,y&gt;n$.同样枚举高度$i$,答案为$\sum_{i=1}^m f(x-1,i)\times f(n-x,m-i+1)\times f(y-(n+1),m-i+1)\times f(n+n-y,i))$</li>
+</ul>
+<p>预处理以下阶乘和逆元就行了.时间复杂度$\mathcal O(n\log mod)$或$\mathcal O(n)$</p>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/297483/">code</a></p>
+<p>End.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/02/CF1245E/" rel="prev" title="CF1245E">
+      <i class="fa fa-chevron-left"></i> CF1245E
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/02/Hello,world!/" rel="next" title="Hello,world!">
+      Hello,world! <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NOIOL2-%E9%A2%98%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text">NOIOL2 题解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E9%AB%98%E7%BB%84"><span class="nav-number">2.</span> <span class="nav-text">提高组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1"><span class="nav-number">2.1.</span> <span class="nav-text">T1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T2"><span class="nav-number">2.2.</span> <span class="nav-text">T2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T3"><span class="nav-number">2.3.</span> <span class="nav-text">T3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%AE%E5%8F%8A%E7%BB%84"><span class="nav-number">3.</span> <span class="nav-text">普及组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1-1"><span class="nav-number">3.1.</span> <span class="nav-text">T1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T2-1"><span class="nav-number">3.2.</span> <span class="nav-text">T2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T3-1"><span class="nav-number">3.3.</span> <span class="nav-text">T3</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">OIerwanhong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      My friends
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://mrskirt.cc/" title="https:&#x2F;&#x2F;mrskirt.cc&#x2F;" rel="noopener" target="_blank">DXTsT</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://seniorious.cc/" title="https:&#x2F;&#x2F;seniorious.cc&#x2F;" rel="noopener" target="_blank">Seniorious</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.masnn.io/" title="https:&#x2F;&#x2F;blog.masnn.io&#x2F;" rel="noopener" target="_blank">masnn</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Isaunoya/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Isaunoya&#x2F;" rel="noopener" target="_blank">Isaunoya</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.woshiluo.com/" title="https:&#x2F;&#x2F;blog.woshiluo.com&#x2F;" rel="noopener" target="_blank">woshiluo</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/knife-rose" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;knife-rose" rel="noopener" target="_blank">red</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zzlblog.ga/" title="https:&#x2F;&#x2F;www.zzlblog.ga" rel="noopener" target="_blank">Doubeecat</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OIerwanhong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v5.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
