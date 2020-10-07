@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monospace:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
@@ -190,7 +190,6 @@
         <h2 id="CF1336C"><a href="#CF1336C" class="headerlink" title="CF1336C"></a>CF1336C</h2><p>题意：给一个初始串$s$和目标串$t$，每次可以取出（并删除）$s$的第一个字符加入另一个串$A$的开头或末尾（初始为空），求$t$是$A$的前缀的方案数（任意一步操作不同即不同，$s$不必删完）</p>
 <p>$|t|\le |s|\le 3000$</p>
 <a id="more"></a> 
-
 <p>区间dp。令$f(l,r)$表示用$s$的前$r-l+1$个字符拼出$t_{l…r}$的方案数。（对于$i&gt;|t|,t_i$可为任意字符）</p>
 <p>边界：$t_i=s_1,f(i,i)=2$</p>
 <p>转移：枚举长度$len$,和左端点$l$,则$r=l+len-1$。  </p>
@@ -201,7 +200,6 @@
 <p>最后的答案就是$\sum _{i=|t|}^{|s|} f(1,i)$</p>
 <p>注意取模。时间复杂度$\mathcal O(n^2)$.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">char</span> s[<span class="number">3011</span>],t[<span class="number">3011</span>];</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">3011</span>][<span class="number">3011</span>],yg=<span class="number">998244353</span>;<span class="comment">//yg txdy!!!</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s%s&quot;</span>,s+<span class="number">1</span>,t+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> n=<span class="built_in">strlen</span>(s+<span class="number">1</span>),m=<span class="built_in">strlen</span>(t+<span class="number">1</span>),res=<span class="number">0</span>,i,j;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;++i)f[i][i]=(i&gt;m||s[<span class="number">1</span>]==t[i])*<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> len=<span class="number">2</span>;len&lt;=n;++len)</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i+len<span class="number">-1</span>&lt;=n;++i)</span><br><span class="line">        &#123;</span><br><span class="line">            j=i+len<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;m||s[len]==t[i])(f[i][j]+=f[i+<span class="number">1</span>][j])%=yg;</span><br><span class="line">            <span class="keyword">if</span>(j&gt;m||s[len]==t[j])(f[i][j]+=f[i][j<span class="number">-1</span>])%=yg;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=m;i&lt;=n;++i)(res+=f[<span class="number">1</span>][i])%=yg;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,res);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>还有一份更短的代码，现在是size排序rk2：<a target="_blank" rel="noopener" href="https://codeforces.ml/contest/1336/submission/76952794">link</a></p>
 
     </div>
@@ -218,12 +216,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/10/02/Hello,world!/" rel="prev" title="Hello,world!">
-      <i class="fa fa-chevron-left"></i> Hello,world!
+    <a href="/2020/10/02/CF1325F/" rel="prev" title="CF1325F">
+      <i class="fa fa-chevron-left"></i> CF1325F
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/10/02/CF1325F/" rel="next" title="CF1325F">
-      CF1325F <i class="fa fa-chevron-right"></i>
+    <a href="/2020/10/02/CF1325E/" rel="next" title="CF1325E">
+      CF1325E <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -298,7 +296,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

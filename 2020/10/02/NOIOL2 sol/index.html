@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monospace:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
@@ -190,7 +190,6 @@
         <h2 id="NOIOL2-题解"><a href="#NOIOL2-题解" class="headerlink" title="NOIOL2 题解"></a>NOIOL2 题解</h2><p>比上次办的好多了<del>至少有LaTeX了</del></p>
 <p>注:提高组的题,如果在<code>acwing</code>上提交,请手动O2,否则可能会被卡常(我放的代码在洛谷等OJ上是不用O2也可以A的)</p>
 <h2 id="提高组"><a href="#提高组" class="headerlink" title="提高组"></a>提高组</h2><a id="more"></a>
-
 <h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>题意:给出$a,b,k$,要求$a$的倍数格子填颜色1,$b$的倍数格子填颜色2,是$ab$倍数的格子颜色任选.求是否存在一种填法,满足忽略掉无色格子后不存在$k$个连续的同色格子.</p>
 <p>$1\le a,b,k\le 10^9$</p>
 <p>解:若$k=1$,必然不存在.</p>
@@ -198,7 +197,9 @@
 <p>对于一般情况,令$a/gcd(a,b),b/gcd(a,b)$即可规约到$a,b$互素之情况.</p>
 <p>每组数据时间复杂度$\mathcal O(\log min(a,b))$ </p>
 <p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/296264/">code</a></p>
-<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>题意:给一个长度为$n$的序列$A$.定义$f(l,r)$为$A[l,r]$中不同的数字个数.求<br>$$<br>(\sum_{i=1}^n\sum_{j=i}^nf(l,r)^2 )mod\ 10^9+7<br>$$<br>$n\le 10^6$,$1\le A_i\le 10^9$</p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>题意:给一个长度为$n$的序列$A$.定义$f(l,r)$为$A[l,r]$中不同的数字个数.求</p>
+<script type="math/tex; mode=display">
+(\sum_{i=1}^n\sum_{j=i}^nf(l,r)^2 )mod\ 10^9+7</script><p>$n\le 10^6$,$1\le A_i\le 10^9$</p>
 <p>暴力:先离散化,然后枚举两个端点统计即可.时间复杂度$\mathcal O(n^2)$</p>
 <p>考虑优化:(这里记$i$为右端点,$j$为左端点)</p>
 <p>考虑加入$i$后的贡献,即$f(j,i)-f(j,i-1)$.求出$last(A_i)$表示$A_i$上一次出现的位置(未出现过则为0)</p>
@@ -206,7 +207,10 @@
 <li>对于$j\le last(A_i),f(j,i)=f(j,i-1)$</li>
 <li>否则$f(j,i)=f(j,i-1)+1$ </li>
 </ul>
-<p>然后$\sum_{j=1}^i f(j,i)^2$就是$i$对答案的贡献了.这个东西显然就是区间加,区间平方和.这个东西线段树好像不能直接做.考虑$f(j,i-1)^2$到$f(j,i)^2$的变化(对于$j&gt;last(A_i)$)<br>$$<br>f(j,i-1)^2-f(j,i)^2=(f(j,i)+1)^2-f(j,i)^2\<br>=2f(j,i)+1<br>$$<br>所以只需要区间加,区间和就行了.线段树即可维护.时间复杂度$\mathcal O(n\log n)$ (据说有点卡常,但我觉得常数正常的线段树都能过啊….)</p>
+<p>然后$\sum_{j=1}^i f(j,i)^2$就是$i$对答案的贡献了.这个东西显然就是区间加,区间平方和.这个东西线段树好像不能直接做.考虑$f(j,i-1)^2$到$f(j,i)^2$的变化(对于$j&gt;last(A_i)$)</p>
+<script type="math/tex; mode=display">
+f(j,i-1)^2-f(j,i)^2=(f(j,i)+1)^2-f(j,i)^2\\
+=2f(j,i)+1</script><p>所以只需要区间加,区间和就行了.线段树即可维护.时间复杂度$\mathcal O(n\log n)$ (据说有点卡常,但我觉得常数正常的线段树都能过啊….)</p>
 <p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/296318/">code</a></p>
 <h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>借鉴(chao xi)了<a target="_blank" rel="noopener" href="https://www.yijan.co/noiol-t3-match/">神仙yijan的题解</a></p>
 <p>题意:给一棵树,恰$n/2$个白点,$n/2$个黑点,每次将黑白点两两配对,求配对$n/2$次后<strong>恰有</strong>$i$对点为祖先-后代关系 的数量.(对998244353取模).</p>
@@ -217,8 +221,14 @@
 <li>枚举子树$v$中已配对的点的数量,做树形背包的转移</li>
 <li>将当前点和某个后代配对</li>
 </ul>
-<p>前者就是树形背包,因此时间复杂度为$\mathcal O(n^2)$(原理就是每对点仅在LCA处贡献一次),后者显然是$\mathcal O(n^2)$ .以此可以求出$f(i)$表示整棵树中钦定$i$对点,剩下的任意匹配:<br>$$<br>f(i)=dp(1,i)\times (n/2-i)!<br>$$</p>
-<p>求出$f$后,即可求原答案:记$g(i)$表示<strong>恰有</strong>$i$对点为祖先-后代关系 的数量.因为有<br>$$<br>C^j_i=\frac{j!}{i!(j-i)!}\<br>f(i)=\sum_{j\ge i}C_i^j g(j)<br>$$<br>二项式反演得:<br>$$<br>g(i)=\sum_{j\ge i}(-1)^{j-i} C^j_if(j)<br>$$<br>这个能预处理阶乘及其逆元算了. 时间复杂度$\mathcal O(n^2)$</p>
+<p>前者就是树形背包,因此时间复杂度为$\mathcal O(n^2)$(原理就是每对点仅在LCA处贡献一次),后者显然是$\mathcal O(n^2)$ .以此可以求出$f(i)$表示整棵树中钦定$i$对点,剩下的任意匹配:</p>
+<script type="math/tex; mode=display">
+f(i)=dp(1,i)\times (n/2-i)!</script><p>求出$f$后,即可求原答案:记$g(i)$表示<strong>恰有</strong>$i$对点为祖先-后代关系 的数量.因为有</p>
+<script type="math/tex; mode=display">
+C^j_i=\frac{j!}{i!(j-i)!}\\
+f(i)=\sum_{j\ge i}C_i^j g(j)</script><p>二项式反演得:</p>
+<script type="math/tex; mode=display">
+g(i)=\sum_{j\ge i}(-1)^{j-i} C^j_if(j)</script><p>这个能预处理阶乘及其逆元算了. 时间复杂度$\mathcal O(n^2)$</p>
 <p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/296326/">code</a></p>
 <h2 id="普及组"><a href="#普及组" class="headerlink" title="普及组"></a>普及组</h2><h3 id="T1-1"><a href="#T1-1" class="headerlink" title="T1"></a>T1</h3><p>题意懒得概括了.</p>
 <p>贪心一下,先选大的$a$直到满足.直接排序再二分就行.时间复杂度$\mathcal O(n\log n)$<br><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/297331/">code</a></p>
@@ -240,7 +250,9 @@
 </ul>
 <p>$1\le x&lt;y\le 2n,1\le n,m\le 10^5$</p>
 <p>解:考虑这样的问题:$n$栋楼房,允许的高度范围为$m$,则单调递增的方案数为?</p>
-<p>首先,对于一个方案,必然有且仅有一种方案满足改变其顺序能得到一个单调递增序列.也就是所求等价于本质不同序列数.这个东西就是:<br>$$<br>f(n,m)= C^{n+m-1}_n<br>$$<br>这个式子用一个隔板法就能搞出来了.</p>
+<p>首先,对于一个方案,必然有且仅有一种方案满足改变其顺序能得到一个单调递增序列.也就是所求等价于本质不同序列数.这个东西就是:</p>
+<script type="math/tex; mode=display">
+f(n,m)= C^{n+m-1}_n</script><p>这个式子用一个隔板法就能搞出来了.</p>
 <p>接下来对$x,y$分类讨论以下:(已知$x&lt;y$)</p>
 <ul>
 <li>$x,y\le n$,枚举他们的高度$i$,则答案即为$\sum_{i=1}^m f(x-1,i)\times f(n-y,m-i+1)$</li>
@@ -345,7 +357,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

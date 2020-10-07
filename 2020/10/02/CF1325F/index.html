@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monospace:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
@@ -190,7 +190,6 @@
         <p>题意：给一个$n$个点的无向图（无重边、自环），要找出包含不少于$\lceil \sqrt n\rceil $个点的简单环或独立集。  </p>
 <p>$n\le 10^5,m\le 2\times 10^5$</p>
 <a id="more"></a>
-
 <p>此题其实暗示一个性质：如果无向图中不存在不少于$\lceil \sqrt n\rceil $个点的简单环，则必然存在不少于$\lceil \sqrt n\rceil $个点的独立集。  </p>
 <p>证明的过程也就是求解的过程。设$lim=\lceil \sqrt n\rceil$</p>
 <p>考虑找出一个搜索树（类似<code>tarjan</code>算法的搜索树）。原图中的每个环必然包含一条父向边。在考虑点$u$的可达点$v$的时候,如果$v$没有被访问过就访问$v$,否则如果$v$是$u$的祖先，并且他们之间形成的环（包含的点数是距离+1）不少于$lim$个点，那么就是一种可行的答案。</p>
@@ -201,7 +200,6 @@
 <p>每个点至多有$lim-2$条父向边$\rightarrow$选择一个点至多导致$lim-2$个点无法选择$\rightarrow$ 至少可以选出大小为$lim$的独立集。原命题证毕。  </p>
 <p>时间复杂度$\mathcal O(n+m)$</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 200011</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ll v,nxt;</span><br><span class="line">&#125;e[MAXN&lt;&lt;<span class="number">1</span>|<span class="number">1</span>];</span><br><span class="line">ll cnt=<span class="number">0</span>,last[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">adde</span><span class="params">(ll u,ll v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    e[++cnt].v=v;</span><br><span class="line">    e[cnt].nxt=last[u],last[u]=cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ll s[MAXN],top=<span class="number">0</span>,dep[MAXN],lim,tag[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(ll u,ll now_dep=<span class="number">1</span>,ll fa=<span class="number">0</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    s[++top]=u;dep[u]=now_dep;</span><br><span class="line">    <span class="keyword">for</span>(ll i=last[u];i;i=e[i].nxt)</span><br><span class="line">    &#123;</span><br><span class="line">        ll v=e[i].v;</span><br><span class="line">        <span class="keyword">if</span>(v==fa)<span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span>(!dep[v])dfs(v,now_dep+<span class="number">1</span>,u);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(dep[u]-dep[v]+<span class="number">1</span>&gt;=lim)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;2\n%lld\n&quot;</span>,dep[u]-dep[v]+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span>(ll p=dep[u]-dep[v]+<span class="number">1</span>;p;--p)<span class="built_in">printf</span>(<span class="string">&quot;%lld &quot;</span>,s[top--]);</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!tag[u])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (ll i = last[u]; i ; i=e[i].nxt)</span><br><span class="line">            tag[e[i].v]=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    --top;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll n=read(),m=read();</span><br><span class="line">    lim=<span class="built_in">sqrt</span>(n);</span><br><span class="line">    <span class="keyword">if</span>(lim*lim&lt;n)++lim;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=m;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        ll u=read(),v=read();</span><br><span class="line">        adde(u,v),adde(v,u);</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">    ll u=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(lim)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(tag[u])++u;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld &quot;</span>,u);</span><br><span class="line">        ++u;</span><br><span class="line">        --lim;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -217,12 +215,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/10/02/CF1336C/" rel="prev" title="CF1336C">
-      <i class="fa fa-chevron-left"></i> CF1336C
+    <a href="/2020/10/02/Hello,world!/" rel="prev" title="Hello,world!">
+      <i class="fa fa-chevron-left"></i> Hello,world!
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/10/02/CF1325E/" rel="next" title="CF1325E">
-      CF1325E <i class="fa fa-chevron-right"></i>
+    <a href="/2020/10/02/CF1336C/" rel="next" title="CF1336C">
+      CF1336C <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -296,7 +294,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

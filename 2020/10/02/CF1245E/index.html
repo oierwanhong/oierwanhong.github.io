@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monospace:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
@@ -189,13 +189,18 @@
       
         <h2 id="CF1245E"><a href="#CF1245E" class="headerlink" title="CF1245E"></a>CF1245E</h2><p>题意：给一个棋盘，有10行10列。格子上可能有梯子，能通过梯子爬到上方的某个格子。但不能连续爬，即通过梯子到达一个格子后不能爬这个格子上的梯子。有一个均匀的6面骰子，求到终点的最小期望投骰子次数。（我概括的不好，有些细节没有提到，建议还是自己读题）</p>
 <a id="more"></a> 
-
 <p>解：先给每个格子分配一个编号,便于处理.我记终点为1,然后按顺序标号,起点为100.同时处理出$to(i)$表示在$i$处爬梯子会爬到的格子编号(若没有梯子,$to(i)=i$)</p>
 <p>考虑期望dp.记$f(i)$表示$i$到终点的期望.显然$f(1)=0$,$f(100)$即为答案.</p>
-<p>对于$i\ge95$,可能会越过终点.对于超出部分,期望就是$f(i)$,否则是$f(i-j),j$是这次的数,即<br>$$<br>f(i)=1+(\sum_{j=1}^{i-1} f(i-j)/6)+(\sum_{j=i}^6f(i)/6)\<br>\therefore f(i)=\frac{6\times (1+(\sum_{j=1}^{i-1} f(i-j)/6))}{i-1}<br>$$<br>接下来考虑一般的格子,这些格子可能有梯子,但不会超出.</p>
-<p>注意,在通过梯子爬到一个格子$x$后,不能再爬$x$这里的梯子了,因此这样是错的:<br>$$<br>f(i)=min(f(to(i)),\sum_{j=1}^6f(i-j))<br>$$<br>因此$f(i)$应严谨地定义为从$i$到终点,且$i$处不爬梯子的期望.对于走到的点是可以走梯子的,即:<br>$$<br>f(i)=\sum_{j=1}^6min(f(i-j),f(to(i-j)))<br>$$<br>时间复杂度$O(nmk)$,此处$n=m=10,k=6$</p>
+<p>对于$i\ge95$,可能会越过终点.对于超出部分,期望就是$f(i)$,否则是$f(i-j),j$是这次的数,即</p>
+<script type="math/tex; mode=display">
+f(i)=1+(\sum_{j=1}^{i-1} f(i-j)/6)+(\sum_{j=i}^6f(i)/6)\\
+\therefore f(i)=\frac{6\times (1+(\sum_{j=1}^{i-1} f(i-j)/6))}{i-1}</script><p>接下来考虑一般的格子,这些格子可能有梯子,但不会超出.</p>
+<p>注意,在通过梯子爬到一个格子$x$后,不能再爬$x$这里的梯子了,因此这样是错的:</p>
+<script type="math/tex; mode=display">
+f(i)=min(f(to(i)),\sum_{j=1}^6f(i-j))</script><p>因此$f(i)$应严谨地定义为从$i$到终点,且$i$处不爬梯子的期望.对于走到的点是可以走梯子的,即:</p>
+<script type="math/tex; mode=display">
+f(i)=\sum_{j=1}^6min(f(i-j),f(to(i-j)))</script><p>时间复杂度$O(nmk)$,此处$n=m=10,k=6$</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**********/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 15</span></span><br><span class="line">ll num[MAXN][MAXN],to[MAXN*MAXN];<span class="comment">//编号,梯子到达的点的编号</span></span><br><span class="line"><span class="keyword">double</span> f[MAXN*MAXN];<span class="comment">//f</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=<span class="number">10</span>;++i)</span><br><span class="line">        <span class="keyword">for</span>(ll j=<span class="number">1</span>;j&lt;=<span class="number">10</span>;++j)</span><br><span class="line">        &#123;</span><br><span class="line">            ll h=read(),&amp;cur=num[i][j];</span><br><span class="line">            <span class="keyword">if</span>(i&amp;<span class="number">1</span>)cur=(i<span class="number">-1</span>)*<span class="number">10</span>+j;</span><br><span class="line">            <span class="keyword">else</span> cur=i*<span class="number">10</span>-j+<span class="number">1</span>;</span><br><span class="line">            to[cur]=num[i-h][j];</span><br><span class="line">        &#125;</span><br><span class="line">    f[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">2</span>;i&lt;=<span class="number">100</span>;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(i&lt;=<span class="number">6</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">double</span> s=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(ll j=<span class="number">1</span>;j&lt;i;++j)s+=f[i-j]/<span class="number">6</span>;</span><br><span class="line">            f[i]=<span class="number">6</span>*s/(i<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">double</span> s=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(ll j=<span class="number">1</span>;j&lt;=<span class="number">6</span>;++j)s+=<span class="built_in">std</span>::min(f[i-j],f[to[i-j]])/<span class="number">6</span>;</span><br><span class="line">            f[i]=s;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.6f&quot;</span>,f[<span class="number">100</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -291,7 +296,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

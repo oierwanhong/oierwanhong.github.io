@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monospace:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
@@ -192,7 +192,6 @@
 <h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>简化题意:给序列$A,B(|A|=|B|=n)$和$m$种操作,1操作可以让$u_i,v_i$都+1或-1,2操作可以让$u_i+1,v_i-1$或$u_i-1,v_i+1$,问能否让$A=B$  </p>
 <p>$n,m\le 10^5$  </p>
 <a id="more"></a>
-
 <p>如果让$u+1$且$u,v$间有2操作,则可以使用2操作让$u-1,v+1$,即对$u$的+1操作转移到$v$上.也就是说,对于由2操作构成的连通块$S$,对任何一个点$x\in S$的+1操作都能转移到另一个点$y\in S$上.因此将整个联通块看成一个点(显然可以并查集做到,以下的点都指这些点).点权为$\sum_{x\in S}b_i-a_i$.    </p>
 <p>此时问题转化为,只有1操作(可以将其看作无向边),能否让所有点点权为0.      </p>
 <p>考虑一个奇环$R$,对$u,v\in R$执行1操作,可以让任意两点$x,y\in R$都+1或-1.所以对于非二分图连通块$G$,若$\sum_{S\in G}W_S$为偶数则可以做到,否则不能.对于二分图连通块$G$,若$\sum_{S\in G}W_S=0$则可以做到.    </p>
@@ -208,8 +207,9 @@
 <ul>
 <li><p>$n$次冒泡之后数列有序,不存在逆序对  </p>
 </li>
-<li><p>记$inv(i)=\sum_{j\lt i}[p_j\gt p_i]$,则$k$次冒泡之后<br>$$<br>\sum inv’(i)=\sum max(inv(i)-k,0)<br>$$</p>
-<p>BIT预处理一下$inv$,然后两个BIT维护就好.<br>修改的时候只影响两个位置,BIT上直接搞.<br>时间复杂度:$O((n+m)\log n)$    </p>
+<li><p>记$inv(i)=\sum_{j\lt i}[p_j\gt p_i]$,则$k$次冒泡之后  </p>
+<script type="math/tex; mode=display">
+\sum inv'(i)=\sum max(inv(i)-k,0)</script><p>BIT预处理一下$inv$,然后两个BIT维护就好.<br>修改的时候只影响两个位置,BIT上直接搞.<br>时间复杂度:$O((n+m)\log n)$    </p>
 <p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/237934/">code</a></p>
 </li>
 </ul>
@@ -224,16 +224,24 @@
 <p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/237936/">code</a></p>
 <h2 id="普及组"><a href="#普及组" class="headerlink" title="普及组"></a>普及组</h2><p>其实也就T2比较玄妙吧</p>
 <h3 id="T1-1"><a href="#T1-1" class="headerlink" title="T1"></a>T1</h3><p>不会(</p>
-<h3 id="T2-1"><a href="#T2-1" class="headerlink" title="T2"></a>T2</h3><p>题意:求和为$n$的本质不同正整数序列数.<br>$n\le 10^5$<br>暴力背包有70pts.<br>做法一:生成函数+五边形数做法:<br>记答案序列的生成函数为<br>$$\sum_{i=0}p(i)x^i$$<br>五边形数定理:<br>$$<br>\phi (n)=\prod_{i=1}(1-x^i)=\sum_{i=0}(-1)^ix^{\frac{3k^2\pm k}{2}}<br>$$</p>
-<p>$$<br>\<br>\frac{1}{\phi(n)}=\sum_{i=0}p(i)x^i<br>$$</p>
-<p>即<br>$$<br>(\sum_{i=0}(-1)^ix^{\frac{3k^2\pm k}{2}})\times(\sum_{i=0}p(i)x^i)=1<br>$$<br>能对$p(i)$产生贡献的项是$\mathcal O(\sqrt n)$级别的,所以总时间复杂度$\mathcal O(n\sqrt n)$  </p>
+<h3 id="T2-1"><a href="#T2-1" class="headerlink" title="T2"></a>T2</h3><p>题意:求和为$n$的本质不同正整数序列数.<br>$n\le 10^5$<br>暴力背包有70pts.<br>做法一:生成函数+五边形数做法:<br>记答案序列的生成函数为  </p>
+<script type="math/tex; mode=display">\sum_{i=0}p(i)x^i</script><p>五边形数定理:  </p>
+<script type="math/tex; mode=display">
+\phi (n)=\prod_{i=1}(1-x^i)=\sum_{i=0}(-1)^ix^{\frac{3k^2\pm k}{2}}</script><script type="math/tex; mode=display">
+\\
+\frac{1}{\phi(n)}=\sum_{i=0}p(i)x^i</script><p>即  </p>
+<script type="math/tex; mode=display">
+(\sum_{i=0}(-1)^ix^{\frac{3k^2\pm k}{2}})\times(\sum_{i=0}p(i)x^i)=1</script><p>能对$p(i)$产生贡献的项是$\mathcal O(\sqrt n)$级别的,所以总时间复杂度$\mathcal O(n\sqrt n)$  </p>
 <p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/231995/">code</a><br>做法二:分块背包:<br>暴力的做法显然:$f(i,j)$表示用$[1,i]$的数凑出$j$的方案数.转移类似完全背包,时空都是$\mathcal O(n^2)$    </p>
 <p>考虑取一整数$m$,用$g(i,j)$表示用$i$个不小于$m$的数凑出$j$的方案数.    </p>
-<p>转移就是整体加一,或加入$m$这个数,即<br>$$<br>g(i,j)=g(i-1,j-m)+g(i-1,j-i)<br>$$<br>显然只有$i\le n/m$的$i$是有意义的,这部分的时间复杂度是$\mathcal O(n/m\times n)$,同时用$f$算用$&lt;m$的数凑出$n$的方案数,总时间复杂度是$\mathcal O((m+n/m)n)$,显然$m=\sqrt n$的时候最优,最优的时空复杂度为$\mathcal O(n\sqrt n)$     </p>
+<p>转移就是整体加一,或加入$m$这个数,即  </p>
+<script type="math/tex; mode=display">
+g(i,j)=g(i-1,j-m)+g(i-1,j-i)</script><p>显然只有$i\le n/m$的$i$是有意义的,这部分的时间复杂度是$\mathcal O(n/m\times n)$,同时用$f$算用$&lt;m$的数凑出$n$的方案数,总时间复杂度是$\mathcal O((m+n/m)n)$,显然$m=\sqrt n$的时候最优,最优的时空复杂度为$\mathcal O(n\sqrt n)$     </p>
 <p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/231995/">code</a></p>
 <h3 id="T3-1"><a href="#T3-1" class="headerlink" title="T3"></a>T3</h3><p>相比于T2,其实这题更套路.  </p>
 <p>首先$n\le 100$暗示Floyd,先求出$dis^0(i,j)$表示$i-&gt;j$不用魔法的最短距离<br>设$dis^k(i,j)$表示$i-&gt;j$恰用$k$次魔法的最短距离 (由于所有边权非负,$dis^k(i,j)$关于$k$单调递减所以$dis^k(1,n)$即为答案,求出它即可.)  </p>
-<p>若已知$dis^{k-1},dis^1$,则<br>$$dis^k(i,j)=\min_{1\le p\le n} \lbrace dis^{k-1}(i,p)+dis^1(p,j) \rbrace$$<br>一个广义矩阵乘法的形式,如果知道了$dis^1,$直接矩阵快速幂就好,时间复杂度$\mathcal O(n^3\log K)$<br>求$dis^1$也简单,枚举每条边$(u,v,w)$做为变成负权的那条边,那么$dis^1(s,t)=dis^0(s,u)-w +dis^0(v,t)$,时间复杂度$\mathcal O(n^2m)$  </p>
+<p>若已知$dis^{k-1},dis^1$,则</p>
+<script type="math/tex; mode=display">dis^k(i,j)=\min_{1\le p\le n} \lbrace dis^{k-1}(i,p)+dis^1(p,j) \rbrace</script><p>一个广义矩阵乘法的形式,如果知道了$dis^1,$直接矩阵快速幂就好,时间复杂度$\mathcal O(n^3\log K)$<br>求$dis^1$也简单,枚举每条边$(u,v,w)$做为变成负权的那条边,那么$dis^1(s,t)=dis^0(s,u)-w +dis^0(v,t)$,时间复杂度$\mathcal O(n^2m)$  </p>
 <p>总时间复杂度$\mathcal O(n^3\log K+n^2m)$      </p>
 <p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/232078/">code</a></p>
 <p>奇怪的NOI Online比赛,出了各种锅<del>反正不要钱,就当玩玩也行</del></p>
@@ -332,7 +340,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

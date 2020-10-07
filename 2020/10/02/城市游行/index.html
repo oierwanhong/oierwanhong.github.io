@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|monospace:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="城市游行给一棵树，点有点权。求两点间的路径上任取两点的距离（定义为点权和）的期望。要支持连边断边，链修改。$n\le 10^5$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="城市游行">
+<meta property="og:url" content="http://yoursite.com/2020/10/02/%E5%9F%8E%E5%B8%82%E6%B8%B8%E8%A1%8C/index.html">
+<meta property="og:site_name" content="wh&#39;s blog">
+<meta property="og:description" content="城市游行给一棵树，点有点权。求两点间的路径上任取两点的距离（定义为点权和）的期望。要支持连边断边，链修改。$n\le 10^5$">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-02T12:34:49.187Z">
+<meta property="article:modified_time" content="2020-10-02T13:02:13.054Z">
+<meta property="article:author" content="OIerwanhong">
+<meta property="article:tag" content="OI">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/10/02/%E5%9F%8E%E5%B8%82%E6%B8%B8%E8%A1%8C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>城市游行 | wh's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wh's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">wh's blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/02/%E5%9F%8E%E5%B8%82%E6%B8%B8%E8%A1%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="OIerwanhong">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wh's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          城市游行
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-10-02 20:34:49 / Modified: 21:02:13" itemprop="dateCreated datePublished" datetime="2020-10-02T20:34:49+08:00">2020-10-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="城市游行"><a href="#城市游行" class="headerlink" title="城市游行"></a>城市游行</h2><p>给一棵树，点有点权。求两点间的路径上任取两点的距离（定义为点权和）的期望。要支持连边断边，链修改。<br>$n\le 10^5$</p>
+<a id="more"></a>
+<p>tag:LCT,math.</p>
+<p>介绍一种式子不同的方法。</p>
+<p>先考虑求的究竟是什么玩意。显然不能大力枚举路径去算，我们考虑每一个点的贡献：对于点 $ s $ ,记其与点 $ y $ 的距离为 $ \text{dep}(s) $ , $ x $ 到 $ y $ 的路径上点数为 $ all $ ,则贡献为 $ \text{dep}(s)<em>(all-\text{dep}(s)+1)</em>w(s) $ </p>
+<p>答案就是 $ \sum_{s\in path(x,y)}\text{dep}(s)<em>(all-\text{dep}(s)+1)</em>w(s) $ </p>
+<p>直接做是平方的，拆开来得到 $ ((all+1)\sum_s dep(s)<em>w(s))-\sum_s dep^2(s)</em>w(s) $ </p>
+<p>也就是说，我们要维护链上每个点深度乘点权的和，与深度的平方乘点权的和，同时要支持连边断边，链加。</p>
+<p>记 $ s $ 的点权，点权和，深度和，深度平方和，深度乘点权和，深度平方乘点权和（以上均指以 $ s $ 为根的 splay 中的信息，“深度”均指到这个 splay 中最浅的点的距离+1）分别为 $ w(s), sumw(s),sumd(s),sumd2(s),dw(s),d2w(s) $ .</p>
+<p>LCT 维护额外信息的关键在于 pushup，因此考虑如何通过左儿子 $ l $ ,右儿子 $ r $ 的信息来推出 $ x $ 的信息,记 $ x $ 的深度(左儿子大小+1）为 $ cur $ 。</p>
+<p>点权和略。  </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+sumd(s)&=sumd(l)+cur+(sumd(r)+cur*size(r)) \\
+ sumd2(s)&=sumd2(l)+cur^2+(sumd2(r)+2cur*sumd(r)+size(r)*cur^2) \\
+ dw(s)&=dw(l)+cur*w(s)+(dw(r)+cur*sumw(r)) \\
+  d2w(s)&=d2w(l)+cur^2*w(s)+(d2w(r)+2cur*dw(r)+cur^2*sumw(r))
+ \end{aligned}</script><p>这几条的思路都是，左儿子不受影响， $ s $ 按定义算，然后算左儿子与 $ s $ 对右儿子的影响。</p>
+<p>但是仅仅修改pushup是不够的。如果你像我那样仅仅改pushup，你会发现 $ w,sumw,sumd,sumd2 $ 都是对的，但 $ dw,d2w $ 是错的。</p>
+<p>仔细观察<del>debug</del> 可以发现， $ dw,d2w $ 的特殊之处在于，与splay的顺序有关（就是说，交换左右儿子，前面几个值不会改变，但 $ dw,d2w $ 会变化）。而LCT因为换根操作的存在，必然是有交换左右儿子的操作的，所以就挂掉了。要改对非常容易，我们再记录两个 $ Rdw,Rd2w $ 表示到splay中最深的点的距离+1的和，下传翻转标记的时候把当前点的 $ dw,Rdw $ 交换， $ d2w,Rd2w $ 交换就好了。</p>
+<p>链加就不说了，和线段树上区间加是一个难度。</p>
+<p>复杂度 $ \mathcal O(m\log n) $ </p>
+<p>写本文时间仓促，如有错漏恳请指出。</p>
+<p>主要代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 100011</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LCT</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> fa[MAXN],son[MAXN][<span class="number">2</span>],rev[MAXN],w[MAXN],add[MAXN];</span><br><span class="line">    ll size[MAXN],sumw[MAXN],sumd[MAXN],sumd2[MAXN];</span><br><span class="line">    ll dw[MAXN],Rdw[MAXN],d2w[MAXN],Rd2w[MAXN];</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)w[i]=read(),size[i]=<span class="number">1</span>;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">not_root</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;<span class="keyword">return</span> son[fa[x]][<span class="number">0</span>]==x||son[fa[x]][<span class="number">1</span>]==x;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pushrev</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;<span class="keyword">if</span>(x)<span class="built_in">std</span>::swap(dw[x],Rdw[x]),<span class="built_in">std</span>::swap(d2w[x],Rd2w[x]),<span class="built_in">std</span>::swap(son[x][<span class="number">0</span>],son[x][<span class="number">1</span>]),rev[x]^=<span class="number">1</span>;&#125;<span class="comment">//翻转</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pushadd</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!x)<span class="keyword">return</span>;</span><br><span class="line">        sumw[x]+=size[x]*k,w[x]+=k,dw[x]+=sumd[x]*k,Rdw[x]+=sumd[x]*k, add[x]+=k;</span><br><span class="line">        d2w[x]+=sumd2[x]*k,Rd2w[x]+=sumd2[x]*k;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l=son[x][<span class="number">0</span>],r=son[x][<span class="number">1</span>];</span><br><span class="line">        ll cur=size[l]+<span class="number">1</span>;</span><br><span class="line">        size[x]=size[l]+size[r]+<span class="number">1</span>;</span><br><span class="line">        sumw[x]=sumw[l]+sumw[r]+w[x];</span><br><span class="line">        sumd[x]=sumd[l]+cur+(sumd[r]+cur*size[r]);</span><br><span class="line">        sumd2[x]=sumd2[l]+cur*cur+(sumd2[r]+<span class="number">2</span>*cur*sumd[r]+size[r]*cur*cur);</span><br><span class="line"></span><br><span class="line">        dw[x]=dw[l]+cur*w[x]+(dw[r]+cur*sumw[r]);</span><br><span class="line">        d2w[x]=d2w[l]+cur*cur*w[x]+(d2w[r]+<span class="number">2</span>*cur*dw[r]+cur*cur*sumw[r]);</span><br><span class="line"></span><br><span class="line">        cur=size[r]+<span class="number">1</span>;</span><br><span class="line">        Rdw[x]=Rdw[r]+cur*w[x]+(Rdw[l]+cur*sumw[l]);</span><br><span class="line">        Rd2w[x]=Rd2w[r]+cur*cur*w[x]+(Rd2w[l]+<span class="number">2</span>*cur*Rdw[l]+cur*cur*sumw[l]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l=son[x][<span class="number">0</span>],r=son[x][<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span>(rev[x])pushrev(l),pushrev(r),rev[x]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(add[x])pushadd(l,add[x]),pushadd(r,add[x]),add[x]=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> y=fa[x],z=fa[y],k=(son[y][<span class="number">1</span>]==x);</span><br><span class="line">        <span class="keyword">if</span>(not_root(y))son[z][son[z][<span class="number">1</span>]==y]=x;</span><br><span class="line">        fa[x]=z;</span><br><span class="line">        son[y][k]=son[x][!k],fa[son[x][!k]]=y;</span><br><span class="line">        son[x][!k]=y,fa[y]=x;</span><br><span class="line">        pushup(y),pushup(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> s[MAXN];</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">splay</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> top=<span class="number">0</span>;</span><br><span class="line">        s[++top]=x;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> y=x;not_root(y);y=fa[y])s[++top]=fa[y];</span><br><span class="line">        <span class="keyword">while</span>(top)pushdown(s[top--]);</span><br><span class="line">        <span class="keyword">while</span>(not_root(x))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> y=fa[x];</span><br><span class="line">            <span class="keyword">if</span>(not_root(y))rotate((son[y][<span class="number">1</span>]==x)==(son[fa[y]][<span class="number">1</span>]==y)?y:x);</span><br><span class="line">            rotate(x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">access</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">0</span>;x;y=x,x=fa[x])</span><br><span class="line">            splay(x),son[x][<span class="number">1</span>]=y,pushup(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get_root</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        access(x),splay(x);</span><br><span class="line">        <span class="keyword">while</span>(son[x][<span class="number">0</span>])x=son[x][<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">return</span> splay(x),x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">make_root</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;access(x),splay(x),pushrev(x);&#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">split</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(get_root(x)!=get_root(y))<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        make_root(x),access(y),splay(y);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Link</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(get_root(x)!=get_root(y))make_root(x),fa[x]=y;<span class="comment">//,printf(&quot;Link %d %d\n&quot;,x,y);</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Cut</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(get_root(x)!=get_root(y))<span class="keyword">return</span>;</span><br><span class="line">        split(x,y);</span><br><span class="line">        <span class="keyword">if</span>(size[y]==<span class="number">2</span>)fa[x]=<span class="number">0</span>,son[y][<span class="number">0</span>]=<span class="number">0</span>,pushup(y);<span class="comment">//,printf(&quot;Cut %d %d\n&quot;,x,y);</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> k)</span></span>&#123;<span class="keyword">if</span>(split(x,y))pushadd(y,k);&#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(split(x,y))</span><br><span class="line">        &#123;</span><br><span class="line">            ll a=(size[y]+<span class="number">1</span>)*dw[y]-d2w[y],b=size[y]*(size[y]+<span class="number">1</span>)/<span class="number">2</span>,g=gcd(a,b);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%lld/%lld\n&quot;</span>,a/g,b/g);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;-1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;lct;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/02/%E3%80%8C%E9%9B%85%E7%A4%BC%E9%9B%86%E8%AE%AD%202017%20Day1%E3%80%8D%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="prev" title="「雅礼集训 2017 Day1」字符串">
+      <i class="fa fa-chevron-left"></i> 「雅礼集训 2017 Day1」字符串
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/02/Border%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%B1%82%E6%B3%95/" rel="next" title="Border的四种求法">
+      Border的四种求法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%8E%E5%B8%82%E6%B8%B8%E8%A1%8C"><span class="nav-number">1.</span> <span class="nav-text">城市游行</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">OIerwanhong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      My friends
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://mrskirt.cc/" title="https:&#x2F;&#x2F;mrskirt.cc&#x2F;" rel="noopener" target="_blank">DXTsT</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://seniorious.cc/" title="https:&#x2F;&#x2F;seniorious.cc&#x2F;" rel="noopener" target="_blank">Seniorious</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.masnn.io/" title="https:&#x2F;&#x2F;blog.masnn.io&#x2F;" rel="noopener" target="_blank">masnn</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Isaunoya/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Isaunoya&#x2F;" rel="noopener" target="_blank">Isaunoya</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.woshiluo.com/" title="https:&#x2F;&#x2F;blog.woshiluo.com&#x2F;" rel="noopener" target="_blank">woshiluo</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/knife-rose" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;knife-rose" rel="noopener" target="_blank">red</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zzlblog.ga/" title="https:&#x2F;&#x2F;www.zzlblog.ga" rel="noopener" target="_blank">Doubeecat</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">OIerwanhong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v5.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
