@@ -28,7 +28,7 @@
 <meta property="og:description" content="CSP2020联考 Day4这场质量挺好。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-07T12:20:05.206Z">
-<meta property="article:modified_time" content="2020-10-07T13:29:01.549Z">
+<meta property="article:modified_time" content="2020-10-07T13:57:58.583Z">
 <meta property="article:author" content="OIerwanhong">
 <meta property="article:tag" content="OI">
 <meta name="twitter:card" content="summary">
@@ -174,7 +174,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-10-07 20:20:05 / Modified: 21:29:01" itemprop="dateCreated datePublished" datetime="2020-10-07T20:20:05+08:00">2020-10-07</time>
+              <time title="Created: 2020-10-07 20:20:05 / Modified: 21:57:58" itemprop="dateCreated datePublished" datetime="2020-10-07T20:20:05+08:00">2020-10-07</time>
             </span>
 
           
@@ -199,7 +199,7 @@
 \begin{equation}
 \begin{aligned}
 f(i,j)&=f(i-1,j)+w_i\ (\text{if }a_i>b_j)\\
-f(i,j)&=f(i-1,j)+\max(0,w_i)\ (\text{if }a_i\le b_j)\\
+f(i,j)&=f(i-1,j)+\min(0,w_i)\ (\text{if }a_i\le b_j)\\
 f(i,j)&=f(i-1,j-1)\ (\text{if }a_i=b_j)
 \end{aligned}
 \end{equation}</script><p>注意2,3两个转移方程的条件有重叠的部分，即对于 $ a_i=b_j $ 时两个转移都要做。<br><br>复杂度 $ \mathcal O(nm) $ .</p>
