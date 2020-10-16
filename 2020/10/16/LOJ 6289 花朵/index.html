@@ -28,7 +28,7 @@
 <meta property="og:description" content="LOJ 6289 花朵好久没有这样独自写一道有意思的题了～  你看那，陌上花  题意：给一棵$n$个点的树，有点权$a_i$。定义一个独立集的权值为点权的乘积，求所有大小为$m$的独立集的权值之和模998244353。 $n,m\le 8\times 10^4,0\le a_i&lt;998244353$">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-16T13:14:54.136Z">
-<meta property="article:modified_time" content="2020-10-16T13:20:33.772Z">
+<meta property="article:modified_time" content="2020-10-16T13:27:09.675Z">
 <meta property="article:author" content="OIerwanhong">
 <meta property="article:tag" content="OI">
 <meta name="twitter:card" content="summary">
@@ -174,7 +174,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-10-16 21:14:54 / Modified: 21:20:33" itemprop="dateCreated datePublished" datetime="2020-10-16T21:14:54+08:00">2020-10-16</time>
+              <time title="Created: 2020-10-16 21:14:54 / Modified: 21:27:09" itemprop="dateCreated datePublished" datetime="2020-10-16T21:14:54+08:00">2020-10-16</time>
             </span>
 
           
@@ -188,7 +188,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="LOJ-6289-花朵"><a href="#LOJ-6289-花朵" class="headerlink" title="LOJ 6289 花朵"></a>LOJ 6289 花朵</h2><p>好久没有这样独自写一道有意思的题了～</p>
+        <h1 id="LOJ-6289-花朵"><a href="#LOJ-6289-花朵" class="headerlink" title="LOJ 6289 花朵"></a>LOJ 6289 花朵</h1><p>好久没有这样独自写一道有意思的题了～</p>
 <blockquote>
 <p>你看那，陌上花</p>
 </blockquote>
@@ -197,11 +197,11 @@
 <a id="more"></a>
 <p>CF上的<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1010/problem/F">这个题</a> 和这题很像，可以先去做做（但不做也不影响啦，我感觉自己写的挺详细的）</p>
 <p>为了方便，下文不区分$n,m$</p>
-<h3 id="暴力"><a href="#暴力" class="headerlink" title="暴力:"></a>暴力:</h3><p>令$f(u,x,0/1)$表示在以$u$为根的子树中所有大小为$x$的独立集权值和，且$u$没选/选了。</p>
+<h2 id="暴力"><a href="#暴力" class="headerlink" title="暴力:"></a>暴力:</h2><p>令$f(u,x,0/1)$表示在以$u$为根的子树中所有大小为$x$的独立集权值和，且$u$没选/选了。</p>
 <p>跑一个树上背包就好。复杂度$\mathcal O(n^2)$</p>
-<h3 id="卷积优化？"><a href="#卷积优化？" class="headerlink" title="卷积优化？"></a>卷积优化？</h3><p>树上背包本质是卷积，理论上可以用NTT优化，但不会得到更多分数。</p>
+<h2 id="卷积优化？"><a href="#卷积优化？" class="headerlink" title="卷积优化？"></a>卷积优化？</h2><p>树上背包本质是卷积，理论上可以用NTT优化，但不会得到更多分数。</p>
 <p>我们考虑来考虑链的情况。</p>
-<h3 id="链"><a href="#链" class="headerlink" title="链:"></a>链:</h3><p>记$v$为$u$的儿子，$f(u,x,0),f(u,x,1)$生成函数为$F_u,G_u$.</p>
+<h2 id="链"><a href="#链" class="headerlink" title="链:"></a>链:</h2><p>记$v$为$u$的儿子，$f(u,x,0),f(u,x,1)$生成函数为$F_u,G_u$.</p>
 <p>考虑把转移写成一个矩阵的形式，其中矩阵的每个元素是一个生成函数。</p>
 <script type="math/tex; mode=display">
 \begin{bmatrix}
@@ -217,7 +217,7 @@ G_v
 <p>考虑给若干个多项式，长度之和为$n$,求他们的卷积。我们的做法是，利用卷积满足结合律的性质，通过分治求解左半部分和右半部分，然后一次NTT合并之。每个多项式只会被贡献$\log n$次，所以复杂度$\mathcal O(n\log^ 2n)$</p>
 <p>我们也可以用同样的分治方法来计算这一堆矩阵的乘积，把矩阵乘法里面改成NTT就好。</p>
 <p>总复杂度$\mathcal O(n\log^ 2n)$。这部分就是提示了我们可以一条链一条链地处理。</p>
-<h3 id="菊花："><a href="#菊花：" class="headerlink" title="菊花："></a>菊花：</h3><p>这部分是提示我们儿子可以“合并”</p>
+<h2 id="菊花："><a href="#菊花：" class="headerlink" title="菊花："></a>菊花：</h2><p>这部分是提示我们儿子可以“合并”</p>
 <p>第一种方法是，仍然把转移写成矩阵。</p>
 <script type="math/tex; mode=display">
 \begin{bmatrix}
@@ -239,7 +239,7 @@ G_u
 SFG&SFG-SG\\
 0 & SG
 \end{bmatrix}</script><p>复杂度都是$\mathcal O(n\log^ 2n)$.</p>
-<h3 id="最终解法"><a href="#最终解法" class="headerlink" title="最终解法"></a>最终解法</h3><p>一条链一条链的处理，其实就是链分治。</p>
+<h2 id="最终解法"><a href="#最终解法" class="headerlink" title="最终解法"></a>最终解法</h2><p>一条链一条链的处理，其实就是链分治。</p>
 <p>考虑一条重链$p_1,p_2…p_k$.我们要求$F_{p_1},G_{p_1}$.</p>
 <p>先递归计算重链上的点的轻子树的答案,用菊花的方法合并，那么就可知重链上每个点的转移矩阵。然后$p_k$的$F,G$已知，用链的方法合并即可求得$F_{p_1},G_{p_1}$。</p>
 <p>因为所有轻子树大小之和为$\mathcal O(n\log n)$,总复杂度$\mathcal O(n\log^3 n)$.但实际跑起来还是很快的。</p>
@@ -323,7 +323,7 @@ SFG&SFG-SG\\
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LOJ-6289-%E8%8A%B1%E6%9C%B5"><span class="nav-number">1.</span> <span class="nav-text">LOJ 6289 花朵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9A%B4%E5%8A%9B"><span class="nav-number">1.1.</span> <span class="nav-text">暴力:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E4%BC%98%E5%8C%96%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">卷积优化？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE"><span class="nav-number">1.3.</span> <span class="nav-text">链:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8F%8A%E8%8A%B1%EF%BC%9A"><span class="nav-number">1.4.</span> <span class="nav-text">菊花：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E8%A7%A3%E6%B3%95"><span class="nav-number">1.5.</span> <span class="nav-text">最终解法</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LOJ-6289-%E8%8A%B1%E6%9C%B5"><span class="nav-number">1.</span> <span class="nav-text">LOJ 6289 花朵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9A%B4%E5%8A%9B"><span class="nav-number">1.1.</span> <span class="nav-text">暴力:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E4%BC%98%E5%8C%96%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">卷积优化？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE"><span class="nav-number">1.3.</span> <span class="nav-text">链:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8F%8A%E8%8A%B1%EF%BC%9A"><span class="nav-number">1.4.</span> <span class="nav-text">菊花：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E8%A7%A3%E6%B3%95"><span class="nav-number">1.5.</span> <span class="nav-text">最终解法</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
