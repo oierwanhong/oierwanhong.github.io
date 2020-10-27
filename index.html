@@ -146,6 +146,75 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/27/ARC106%20E%20Medals/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="OIerwanhong">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wh's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/27/ARC106%20E%20Medals/" class="post-title-link" itemprop="url">ARC106 E Medals</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-10-27 12:04:40 / Modified: 12:11:02" itemprop="dateCreated datePublished" datetime="2020-10-27T12:04:40+08:00">2020-10-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>ARC106 E Medals </p>
+<p>有$n$个职工，第$i$个（从第一天开始）连续工作$a_i$天,然后连续休息$a_i$天，并重复该过程。每天，你可以给至多一名来工作的职工发至多一个奖章。求至少要多少天后，所有员工都有至少$k$个奖章。</p>
+<p>$n\le 18,k,a_i\le 10^5$</p>
+<p>感谢hehezhou 的指导。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/27/ARC106%20E%20Medals/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/23/LOJ%202092%20%E3%80%8CZJOI2016%E3%80%8D%E5%A4%A7%E6%A3%AE%E6%9E%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -770,75 +839,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/02/%E6%B5%85%E8%B0%88%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="OIerwanhong">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wh's blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/02/%E6%B5%85%E8%B0%88%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB/" class="post-title-link" itemprop="url">浅谈线段树分治</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-10-02 20:05:49" itemprop="dateCreated datePublished" datetime="2020-10-02T20:05:49+08:00">2020-10-02</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="浅谈线段树分治"><a href="#浅谈线段树分治" class="headerlink" title="浅谈线段树分治"></a>浅谈线段树分治</h2><p>众所周知区间加，区间乘等操作可以利用线段树在单次操作$\mathcal O(\log n)$时间复杂度内完成。<br>对于更复杂的对区间的操作，同样可以利用线段树每次访问$\mathcal O(\log n)$个节点的性质，把标记打在这$\mathcal O(\log n)$个节点上，最后从根开始dfs，将信息下推至叶子节点，以此更快速的解决。  </p>
-<p>在此介绍两个例题：</p>
-<h2 id="CF-981E"><a href="#CF-981E" class="headerlink" title="CF 981E"></a><a target="_blank" rel="noopener" href="https://codeforces.ml/problemset/problem/981/E">CF 981E</a></h2><p>题意:</p>
-<p>给一个长度为$n$ 的序列(初始全为0)和$q$条操作(以$(l,r,x)$表示将$[l,r]$中的每个数都加上$x$.<br>对于$1\le k\le n$,求哪些$k$满足选出若干条操作后序列最大值为$k$.(对于一个$k$,每条操作至多用一次)</p>
-<p>$1\le n,q\le 10^4$</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/02/%E6%B5%85%E8%B0%88%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -909,7 +909,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
