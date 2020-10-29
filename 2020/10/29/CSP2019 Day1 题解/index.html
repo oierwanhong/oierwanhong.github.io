@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="LOJ 2092 「ZJOI2016」大森林题意：有$n$棵树，初始都只有点1，每棵树有一个“生长节点”，初始也为1. 有三种操作：  $[l,r]$中所有树的生长节点下面都长一个点，编号为1操作次数+1. $[l,r]$中所有树的生长节点都变为$x$ （不影响没有点$x$的树） 询问树$x$上$u,v$的距离，保证树$x$存在点$u,v$.  $n\le 10^5,Q\le 2\times 10">
+  <meta name="description" content="CSP2019 Day1 题解 等我，等我。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LOJ 2092 「ZJOI2016」大森林">
-<meta property="og:url" content="http://yoursite.com/2020/10/23/LOJ%202092%20%E3%80%8CZJOI2016%E3%80%8D%E5%A4%A7%E6%A3%AE%E6%9E%97/index.html">
+<meta property="og:title" content="CSP2019 Day1 题解">
+<meta property="og:url" content="http://yoursite.com/2020/10/29/CSP2019%20Day1%20%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="wh&#39;s blog">
-<meta property="og:description" content="LOJ 2092 「ZJOI2016」大森林题意：有$n$棵树，初始都只有点1，每棵树有一个“生长节点”，初始也为1. 有三种操作：  $[l,r]$中所有树的生长节点下面都长一个点，编号为1操作次数+1. $[l,r]$中所有树的生长节点都变为$x$ （不影响没有点$x$的树） 询问树$x$上$u,v$的距离，保证树$x$存在点$u,v$.  $n\le 10^5,Q\le 2\times 10">
+<meta property="og:description" content="CSP2019 Day1 题解 等我，等我。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-10-23T07:20:55.669Z">
-<meta property="article:modified_time" content="2020-10-23T07:20:55.673Z">
+<meta property="article:published_time" content="2020-10-29T13:44:23.105Z">
+<meta property="article:modified_time" content="2020-10-29T13:49:08.441Z">
 <meta property="article:author" content="OIerwanhong">
 <meta property="article:tag" content="OI">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/10/23/LOJ%202092%20%E3%80%8CZJOI2016%E3%80%8D%E5%A4%A7%E6%A3%AE%E6%9E%97/">
+<link rel="canonical" href="http://yoursite.com/2020/10/29/CSP2019%20Day1%20%E9%A2%98%E8%A7%A3/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>LOJ 2092 「ZJOI2016」大森林 | wh's blog</title>
+  <title>CSP2019 Day1 题解 | wh's blog</title>
   
 
 
@@ -150,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/23/LOJ%202092%20%E3%80%8CZJOI2016%E3%80%8D%E5%A4%A7%E6%A3%AE%E6%9E%97/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/29/CSP2019%20Day1%20%E9%A2%98%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LOJ 2092 「ZJOI2016」大森林
+          CSP2019 Day1 题解
         </h1>
 
         <div class="post-meta">
@@ -172,8 +172,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-10-23 15:20:55" itemprop="dateCreated datePublished" datetime="2020-10-23T15:20:55+08:00">2020-10-23</time>
+              <time title="Created: 2020-10-29 21:44:23 / Modified: 21:49:08" itemprop="dateCreated datePublished" datetime="2020-10-29T21:44:23+08:00">2020-10-29</time>
             </span>
 
           
@@ -187,21 +188,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="LOJ-2092-「ZJOI2016」大森林"><a href="#LOJ-2092-「ZJOI2016」大森林" class="headerlink" title="LOJ 2092 「ZJOI2016」大森林"></a>LOJ 2092 <a target="_blank" rel="noopener" href="https://loj.ac/problem/2092">「ZJOI2016」大森林</a></h2><p>题意：有$n$棵树，初始都只有点1，每棵树有一个“生长节点”，初始也为1.</p>
-<p>有三种操作：</p>
-<ol>
-<li>$[l,r]$中所有树的生长节点下面都长一个点，编号为1操作次数+1.</li>
-<li>$[l,r]$中所有树的生长节点都变为$x$ （不影响没有点$x$的树）</li>
-<li>询问树$x$上$u,v$的距离，保证树$x$存在点$u,v$.</li>
-</ol>
-<p>$n\le 10^5,Q\le 2\times 10^5$</p>
+        <h2 id="CSP2019-Day1-题解"><a href="#CSP2019-Day1-题解" class="headerlink" title="CSP2019 Day1 题解"></a>CSP2019 Day1 题解</h2><blockquote>
+<p>等我，等我。</p>
+</blockquote>
 <a id="more"></a>
-<p>解：</p>
-<p>首先我们不能真的维护这$n$个树。考虑一次操作的影响，其实只是让第$l-1$棵树和第$l$棵树变得形态不同，第$r$棵树与第$r+1$棵树变得形态不同。</p>
-<p>那么显然可以把操作离线排序（树的编号为第一关键字，时间为第二关键字），用扫描线和LCT来搞这玩意。但这样也搞出来很多麻烦，比如一个生长节点下面挂                                                                                                                                                                                                    了很多儿子，又因为LCT只能断边，所以在更换生长节点的时候复杂度会挂掉。</p>
-<p>用建虚点来解决这些问题。首先对于每个换生长节点的操作，我们都新建一个虚点。如果这棵树不受影响那么让他挂在原本的生长节点下面，否则挂在新的生长节点下面，扫描线之后就是个换父亲的操作，LCT直接做就好了。对于长出来一个点的操作我们同样新建一个点，挂在前一个虚点下面，然后把这个真的点挂在新的虚点下面，后面换生长节点的时候会换好，就不用管原本的生长节点是谁了。</p>
-<p>一些细节：询问要求距离，把边权下放为点权（虚点点权为0），就变成询问链上点权和。这东西没必要无根树LCT，用$dep(u)+dep(v)-2*dep(LCA)$ 就可以有根树LCT直接做了。然后一开始可以把虚点挂成一条链。</p>
-<p><a target="_blank" rel="noopener" href="https://loj.ac/submission/964269">My code</a></p>
+<h3 id="T1-格雷码"><a href="#T1-格雷码" class="headerlink" title="T1 格雷码"></a>T1 <a target="_blank" rel="noopener" href="https://loj.ac/problem/3208">格雷码</a></h3><p>前面部分的格雷码数量为$2^{n-1}$,后面也是。递归求解即可。注意使用<code>ull</code>类型。</p>
+<p><a target="_blank" rel="noopener" href="https://loj.ac/submission/942913">My code</a></p>
+<h3 id="T2-括号树"><a href="#T2-括号树" class="headerlink" title="T2 括号树"></a>T2 <a target="_blank" rel="noopener" href="https://loj.ac/problem/3209">括号树</a></h3><p>考虑继承父亲的答案，当前点相比于父亲多出的合法串都一定以该点的字符为右端点。</p>
+<p>记$f(u)$表示$u$处新增的合法括号串数量。维护一个栈存左括号，转移时若$u$处字符为右括号则$f(u)=f(StackTop)+1$,否则$f(u)=0$.</p>
+<p>复杂度$\mathcal O(n)$.</p>
+<p><a target="_blank" rel="noopener" href="https://loj.ac/submission/942911">My code</a></p>
+<h3 id="T3-树上的数"><a href="#T3-树上的数" class="headerlink" title="T3 树上的数"></a>T3 <a target="_blank" rel="noopener" href="https://loj.ac/problem/3210">树上的数</a></h3><p>建议边阅读边画图。</p>
+<p>首先字典序满足贪心的性质，那么枚举每个数字，通过删边把他放到编号尽量小的节点上，并满足这样操作后，之后存在至少一种方案删完所有边而不影响已确定的数字（包括现在这个）。</p>
+<p>关键就在于如何判断现在的移动是否可能做到，以及之后能否还存在方案（请注意，这是两个条件，后面的操作对这两个条件分别处理）。</p>
+<p>考虑通过删掉连续的一条链，将一个数移动到一个点上的影响：</p>
+<ul>
+<li>对于起点，我们钦定了其起始边（即这个与这个点相邻的<strong>最早</strong>被删掉的边）。</li>
+<li>对于终点，我们钦定了其最终边（即这个与这个点相邻的<strong>最迟</strong>被删掉的边）。</li>
+<li>对于中间部分的点（记为$u$），我们要求其在这条链上的两条边$a,b$满足$a$删除之后<strong>立刻删除</strong>$b$（这个“立刻”实际是指与$u$相邻的边中$a$删除之后必须删除$b$,但我们很容易通过给$u\rightarrow v$的边和$v\rightarrow u$的边不同的编号来去掉”与$u$相邻”的限制）.记$a$为$b$的前驱，$b$为$a$的后继（这是个偏序关系）。</li>
+</ul>
+<p>先考虑一个$\mathcal O(n^3)$的暴力。枚举现在的数字$i$（假设位于$x$），再枚举终点$y$。如果$x$没有起始边，且$y$没有最终边，且中间的点在链上的两条边$a,b$满足$a$没有后继，$b$没有前驱（且$a$不是$b$的间接后继，这个等价于$a,b$还没有任何偏序关系），那么现在这次移动可以做到（但不保证之后还能存在不影响已确定的数的方案）。</p>
+<p>考虑什么移动会导致之后不存在不影响已确定的数的方案：对于一个点$u$，若其邻边已经构成了完整的偏序链（起始边到最终边）但$u$仍然有邻边不在偏序链中（说白了就是，我们已知其起始边，那么一直沿着后继走，最后如果走不到终止边那么没有任何问题，如果走到了终止边，且此时已走过的边数不足$deg(u)$,之后就不存在不影响已确定的数的方案了），因为之后还不在该偏序链中的边也必须被删除，这就会导致最终在$u$点的数出去并进来一个新的数。</p>
+<p>枚举链上的所有点，用链表维护是否有前驱/后继（为了标明是否是起始边/最终边，可以把点拆两个，让起始边与$u$连，终止边与$n+u$连），用并查集维护是否已经有偏序关系和查询偏序链的长度。</p>
+<p>复杂度$\mathcal O(n^3\alpha(n))$</p>
+<p>实际上我们只要从$x$开始DFS整棵树，同时判断哪些点可以作为终点，取一个编号最小的就好了，判断能否作为终点的方法同上。</p>
+<p>复杂度$\mathcal O(n^2\alpha(n))$</p>
+<p><a target="_blank" rel="noopener" href="https://loj.ac/submission/971077">My code</a></p>
 
     </div>
 
@@ -217,12 +229,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/10/16/LOJ%206289%20%E8%8A%B1%E6%9C%B5/" rel="prev" title="LOJ 6289 花朵">
-      <i class="fa fa-chevron-left"></i> LOJ 6289 花朵
+    <a href="/2020/10/27/AGC002%20F%20Leftmost%20Ball/" rel="prev" title="AGC002 F Leftmost Ball">
+      <i class="fa fa-chevron-left"></i> AGC002 F Leftmost Ball
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/10/27/ARC106%20E%20Medals/" rel="next" title="ARC106 E Medals">
-      ARC106 E Medals <i class="fa fa-chevron-right"></i>
+    <a href="/2020/10/29/CSP2019%20Day2%20%E9%A2%98%E8%A7%A3/" rel="next" title="CSP2019 Day2 题解">
+      CSP2019 Day2 题解 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -283,7 +295,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LOJ-2092-%E3%80%8CZJOI2016%E3%80%8D%E5%A4%A7%E6%A3%AE%E6%9E%97"><span class="nav-number">1.</span> <span class="nav-text">LOJ 2092 「ZJOI2016」大森林</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSP2019-Day1-%E9%A2%98%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text">CSP2019 Day1 题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1-%E6%A0%BC%E9%9B%B7%E7%A0%81"><span class="nav-number">1.1.</span> <span class="nav-text">T1 格雷码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T2-%E6%8B%AC%E5%8F%B7%E6%A0%91"><span class="nav-number">1.2.</span> <span class="nav-text">T2 括号树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T3-%E6%A0%91%E4%B8%8A%E7%9A%84%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">T3 树上的数</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
