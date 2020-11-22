@@ -28,7 +28,7 @@
 <meta property="og:description" content="yLOI2020 题解扶咕咕6题4.5h残忍虐杀脑子慢手速慢选手Orz.不过题的质量是很好的，尤其是D题，我可能一辈子都出不出这种题，真的只能Orz。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-11-22T03:53:59.675Z">
-<meta property="article:modified_time" content="2020-11-22T03:57:46.209Z">
+<meta property="article:modified_time" content="2020-11-22T08:26:01.765Z">
 <meta property="article:author" content="OIerwanhong">
 <meta property="article:tag" content="OI">
 <meta name="twitter:card" content="summary">
@@ -174,7 +174,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-11-22 11:53:59 / Modified: 11:57:46" itemprop="dateCreated datePublished" datetime="2020-11-22T11:53:59+08:00">2020-11-22</time>
+              <time title="Created: 2020-11-22 11:53:59 / Modified: 16:26:01" itemprop="dateCreated datePublished" datetime="2020-11-22T11:53:59+08:00">2020-11-22</time>
             </span>
 
           
@@ -235,6 +235,8 @@ f(i,j) &= \min_pf(i+1,j-p-w)-x_b(1+w_p)\ (j>0) \\
 <p>70%:$n,m,x_i\le 10^5$.100%:$n,m\le 10^5,x_i\le 10^9$，保证所有$x_i$两侧均有至少一个目标点。</p>
 <p>70pts非常白给：记两个相邻目标点距离为$p,f(i)$表示距左边目标点距离为$i$，随机游走到目标点期望步数。易得$f(i)=\frac{f(i-1)+f(i+1)}2+1$.做一个稀疏矩阵高斯消元即可做到$\mathcal O(p).$</p>
 <p>100pts的话可以用上面的方法打个表，观察得距离为$p$时$f(i)=(p-i)\times i$.</p>
+<p>稍微证明一下：</p>
+<p>设$n$是偶数，那么考虑中点$m=\frac{n}2$。由对称性得$f(m-1)=f(m+1)$.记$f(m-1)=x$,则$f(m)=x+1.$回带我们的方程即可得证。对于$n$是奇数，记$f(\lfloor\frac{n}2\rfloor)=f(\lceil\frac{n}{2}\rceil)=x$,之后同理。</p>
 <p>复杂度$\mathcal O(n\log n+m)$,瓶颈在对目标点排序。</p>
 
     </div>
