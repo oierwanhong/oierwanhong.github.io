@@ -146,6 +146,77 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/11/loj%202048.%20%E3%80%8CHNOI2016%E3%80%8D%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="OIerwanhong">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wh's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/11/loj%202048.%20%E3%80%8CHNOI2016%E3%80%8D%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0/" class="post-title-link" itemprop="url">loj 2048. 「HNOI2016」最小公倍数</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-12-11 22:03:23 / Modified: 22:10:58" itemprop="dateCreated datePublished" datetime="2020-12-11T22:03:23+08:00">2020-12-11</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="loj-2048-「HNOI2016」最小公倍数"><a href="#loj-2048-「HNOI2016」最小公倍数" class="headerlink" title="loj 2048. 「HNOI2016」最小公倍数"></a><a target="_blank" rel="noopener" href="https://loj.ac/p/2048">loj 2048. 「HNOI2016」最小公倍数</a></h2><p>给一个$n$个点$m$条边的无向图，每条边有属性$a_i,b_i$.有$Q$次询问，每次询问给出$u,v,A,B$，你需要回答从点$u$到点$v$是否存在一条路径$P$（不要求是简单路径）满足 $\max_{e\in P}\{a_e\}=A$且$\max_{e\in P}\{b_e\}=B$</p>
+<p>$n,q\le 5\times 10^4,m\le 10^5.$</p>
+<p>My solution:</p>
+<p>考虑如果我们得到了图$G(A,B)=(V,\{e|a_e\le A,b_e\le B\})$，如何处理询问。维护一个并查集，将$G(A,B)$中所有边加入并维护连通块的$a_e$最大值和$b_e$最大值。</p>
+<p>【判定】： $u,v$存在合法路径 $\Leftrightarrow $ $u,v$在$G(A,B)$中连通，且所在连通块$a_e$最大值为$A$,$b_e$最大值为$B$.</p>
+<p>所以就是如何得到图$G(A,B)$了。大概就是要实现”不强制在线的二维可持久化并查集”。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/11/loj%202048.%20%E3%80%8CHNOI2016%E3%80%8D%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/22/yLOI2020%20%E9%A2%98%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -765,72 +836,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/07/CSP2020%E8%81%94%E8%80%83%20Day4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="OIerwanhong">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wh's blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/07/CSP2020%E8%81%94%E8%80%83%20Day4/" class="post-title-link" itemprop="url">CSP2020联考 Day4</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-10-07 20:20:05 / Modified: 21:57:58" itemprop="dateCreated datePublished" datetime="2020-10-07T20:20:05+08:00">2020-10-07</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="CSP2020联考-Day4"><a href="#CSP2020联考-Day4" class="headerlink" title="CSP2020联考 Day4"></a>CSP2020联考 Day4</h2><p>这场质量挺好。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/07/CSP2020%E8%81%94%E8%80%83%20Day4/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -901,7 +906,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
