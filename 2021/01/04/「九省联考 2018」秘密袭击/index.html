@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="NOI Online sol好像都是sb题,但我没AK啊,可能我是sb吧 提高组游记都是流水账,懒得写了. T1简化题意:给序列$A,B(|A|&#x3D;|B|&#x3D;n)$和$m$种操作,1操作可以让$u_i,v_i$都+1或-1,2操作可以让$u_i+1,v_i-1$或$u_i-1,v_i+1$,问能否让$A&#x3D;B$   $n,m\le 10^5$">
+  <meta name="description" content="「九省联考 2018」秘密袭击给一棵树，点有点权$w_i$。给定$k$,求所有大小至少为$k$的连通块的第$k$大点权和。模64123 $n\le 1666,w_i\le 1666.$  时限5s. 暴力按照套路，枚举第$k$大点权$x$.令$cnt(x)$表示包含至少$k$个权值不小于$x$的点的连通块数量。 答案即为  \sum_x x(cnt(x)-cnt(x+1))&#x3D;\sum_xcnt(x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NOIOL题解">
-<meta property="og:url" content="http://yoursite.com/2020/10/02/NOIOL%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:title" content="「九省联考 2018」秘密袭击">
+<meta property="og:url" content="http://yoursite.com/2021/01/04/%E3%80%8C%E4%B9%9D%E7%9C%81%E8%81%94%E8%80%83%202018%E3%80%8D%E7%A7%98%E5%AF%86%E8%A2%AD%E5%87%BB/index.html">
 <meta property="og:site_name" content="wh&#39;s blog">
-<meta property="og:description" content="NOI Online sol好像都是sb题,但我没AK啊,可能我是sb吧 提高组游记都是流水账,懒得写了. T1简化题意:给序列$A,B(|A|&#x3D;|B|&#x3D;n)$和$m$种操作,1操作可以让$u_i,v_i$都+1或-1,2操作可以让$u_i+1,v_i-1$或$u_i-1,v_i+1$,问能否让$A&#x3D;B$   $n,m\le 10^5$">
+<meta property="og:description" content="「九省联考 2018」秘密袭击给一棵树，点有点权$w_i$。给定$k$,求所有大小至少为$k$的连通块的第$k$大点权和。模64123 $n\le 1666,w_i\le 1666.$  时限5s. 暴力按照套路，枚举第$k$大点权$x$.令$cnt(x)$表示包含至少$k$个权值不小于$x$的点的连通块数量。 答案即为  \sum_x x(cnt(x)-cnt(x+1))&#x3D;\sum_xcnt(x">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-10-02T12:05:49.674Z">
-<meta property="article:modified_time" content="2020-10-02T12:05:49.674Z">
+<meta property="article:published_time" content="2021-01-04T07:30:53.893Z">
+<meta property="article:modified_time" content="2021-01-04T07:35:50.179Z">
 <meta property="article:author" content="OIerwanhong">
 <meta property="article:tag" content="OI">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/10/02/NOIOL%E9%A2%98%E8%A7%A3/">
+<link rel="canonical" href="http://yoursite.com/2021/01/04/%E3%80%8C%E4%B9%9D%E7%9C%81%E8%81%94%E8%80%83%202018%E3%80%8D%E7%A7%98%E5%AF%86%E8%A2%AD%E5%87%BB/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>NOIOL题解 | wh's blog</title>
+  <title>「九省联考 2018」秘密袭击 | wh's blog</title>
   
 
 
@@ -150,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/02/NOIOL%E9%A2%98%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/04/%E3%80%8C%E4%B9%9D%E7%9C%81%E8%81%94%E8%80%83%202018%E3%80%8D%E7%A7%98%E5%AF%86%E8%A2%AD%E5%87%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          NOIOL题解
+          「九省联考 2018」秘密袭击
         </h1>
 
         <div class="post-meta">
@@ -172,8 +172,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-10-02 20:05:49" itemprop="dateCreated datePublished" datetime="2020-10-02T20:05:49+08:00">2020-10-02</time>
+              <time title="Created: 2021-01-04 15:30:53 / Modified: 15:35:50" itemprop="dateCreated datePublished" datetime="2021-01-04T15:30:53+08:00">2021-01-04</time>
             </span>
 
           
@@ -187,64 +188,41 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="NOI-Online-sol"><a href="#NOI-Online-sol" class="headerlink" title="NOI Online sol"></a>NOI Online sol</h2><p>好像都是sb题,但我没AK啊,可能我是sb吧</p>
-<h2 id="提高组"><a href="#提高组" class="headerlink" title="提高组"></a>提高组</h2><p>游记都是流水账,懒得写了.</p>
-<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>简化题意:给序列$A,B(|A|=|B|=n)$和$m$种操作,1操作可以让$u_i,v_i$都+1或-1,2操作可以让$u_i+1,v_i-1$或$u_i-1,v_i+1$,问能否让$A=B$  </p>
-<p>$n,m\le 10^5$  </p>
-<a id="more"></a>
-<p>如果让$u+1$且$u,v$间有2操作,则可以使用2操作让$u-1,v+1$,即对$u$的+1操作转移到$v$上.也就是说,对于由2操作构成的连通块$S$,对任何一个点$x\in S$的+1操作都能转移到另一个点$y\in S$上.因此将整个联通块看成一个点(显然可以并查集做到,以下的点都指这些点).点权为$\sum_{x\in S}b_i-a_i$.    </p>
-<p>此时问题转化为,只有1操作(可以将其看作无向边),能否让所有点点权为0.      </p>
-<p>考虑一个奇环$R$,对$u,v\in R$执行1操作,可以让任意两点$x,y\in R$都+1或-1.所以对于非二分图连通块$G$,若$\sum_{S\in G}W_S$为偶数则可以做到,否则不能.对于二分图连通块$G$,若$\sum_{S\in G}W_S=0$则可以做到.    </p>
-<p>时间复杂度$O((n+m)\log n)$,这个log是路径压缩的并查集的.    </p>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/237932/">code</a></p>
-<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>题意:给一个排列$p$,要支持两种操作:     </p>
-<ul>
-<li>交换$x,x+1$  </li>
-<li>询问$k$次冒泡排序之后的逆序对数  </li>
-</ul>
-<p>$n,m\le 2\times 10^5,k\le 2^{30}$        </p>
-<p>两个性质:  </p>
-<ul>
-<li><p>$n$次冒泡之后数列有序,不存在逆序对  </p>
-</li>
-<li><p>记$inv(i)=\sum_{j\lt i}[p_j\gt p_i]$,则$k$次冒泡之后  </p>
+        <h2 id="「九省联考-2018」秘密袭击"><a href="#「九省联考-2018」秘密袭击" class="headerlink" title="「九省联考 2018」秘密袭击"></a><a target="_blank" rel="noopener" href="https://loj.ac/p/2473">「九省联考 2018」秘密袭击</a></h2><p>给一棵树，点有点权$w_i$。给定$k$,求所有大小至少为$k$的连通块的第$k$大点权和。模64123</p>
+<p>$n\le 1666,w_i\le 1666.$  时限5s.</p>
+<h3 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h3><p>按照套路，枚举第$k$大点权$x$.令$cnt(x)$表示包含至少$k$个权值不小于$x$的点的连通块数量。</p>
+<p>答案即为</p>
 <script type="math/tex; mode=display">
-\sum inv'(i)=\sum max(inv(i)-k,0)</script><p>BIT预处理一下$inv$,然后两个BIT维护就好.<br>修改的时候只影响两个位置,BIT上直接搞.<br>时间复杂度:$O((n+m)\log n)$    </p>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/237934/">code</a></p>
-</li>
-</ul>
-<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>给一个正整数环$A$,每次询问间隔$k$的数对乘积之和的最大值(你可以任意改变环的顺序)    </p>
-<p>$n,m\le 2\times 10^5$      </p>
-<p>简单的贪心:先考虑$gcd(n,k)=1$的情况:     </p>
-<p>最大的边上放第二大,第三大;第二大边上放第四大(已经在最大边上)    </p>
-<p><del>和暴力对拍下可知正确性</del>    </p>
-<p>简单来说就是当前可选集合中最大的应该选尽量大的放在边上    </p>
-<p>比如说$a&gt;b&gt;c$,如果$(a,c,b)$那么贡献是$ac+bc$,而$(a,b,c)$贡献是$ab+bc$.因为$b&gt;c$所以$ac&gt;bc$.    </p>
-<p>对于不互质的情况,可以拆成$gcd(n,k)$个大小为$\frac{n}{gcd(n,k)}$的环,每个环如上处理即可.暴力做时间复杂度是$O(n^2)$,考虑相同的$gcd(n,k)$结果必然相同,记忆化一下就好了,时间复杂度$O(n\sqrt n)$      </p>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/237936/">code</a></p>
-<h2 id="普及组"><a href="#普及组" class="headerlink" title="普及组"></a>普及组</h2><p>其实也就T2比较玄妙吧</p>
-<h3 id="T1-1"><a href="#T1-1" class="headerlink" title="T1"></a>T1</h3><p>不会(</p>
-<h3 id="T2-1"><a href="#T2-1" class="headerlink" title="T2"></a>T2</h3><p>题意:求和为$n$的本质不同正整数序列数.<br>$n\le 10^5$<br>暴力背包有70pts.<br>做法一:生成函数+五边形数做法:<br>记答案序列的生成函数为  </p>
-<script type="math/tex; mode=display">\sum_{i=0}p(i)x^i</script><p>五边形数定理:  </p>
+\sum_x x(cnt(x)-cnt(x+1))=\sum_xcnt(x)</script><p>然后$cnt(x)$我们可以做树上背包来求。总复杂度$\mathcal O(n^3)$ 。（听说能过</p>
+<h3 id="我的做法"><a href="#我的做法" class="headerlink" title="我的做法"></a>我的做法</h3><p>按照<a target="_blank" rel="noopener" href="https://oierwanhong.cc/2020/10/16/LOJ%206289%20%E8%8A%B1%E6%9C%B5/">LOJ 花朵</a> 的套路，我们进行链分治。重儿子的贡献和其余儿子的贡献都可以描述成矩阵（其中每个元素是一个生成函数），然后用NTT+分治 合并这些矩阵即可（这题模数不能NTT,但FFT不会爆精度），将树上背包的复杂度降为$\mathcal O(n\log^ 3n)$. 卡常后（展开矩乘等）能过。</p>
+<p><a target="_blank" rel="noopener" href="https://loj.ac/s/1025261">My code</a></p>
+<h3 id="官方做法"><a href="#官方做法" class="headerlink" title="官方做法"></a>官方做法</h3><p>考虑那个树上背包的生成函数。</p>
 <script type="math/tex; mode=display">
-\phi (n)=\prod_{i=1}(1-x^i)=\sum_{i=0}(-1)^ix^{\frac{3k^2\pm k}{2}}</script><script type="math/tex; mode=display">
-\\
-\frac{1}{\phi(n)}=\sum_{i=0}p(i)x^i</script><p>即  </p>
+F(u,i)=\sum_{k=0}a_kx^k</script><p>$a_k$表示，点$u$的子树中，选取一个包含$u$的连通块且满足权值超过$i$的点数量恰为$k$的方案数。</p>
+<p>合并的时候要卷积复杂度太高，按照套路，我们只带入$n+1$个点值，最后再恢复这个生成函数（具体恢复之后说）</p>
+<p>考虑转移，即$F(u,i)=x^{[a_u\ge i]}\cdot  \prod_{v\in son(u)} (F(v,i)+1)$</p>
+<p>（注意此时$x$已经是个具体的值了）</p>
+<p>此外还要再维护$G(u,i)=\sum_{v\in subtree(u)}F(v,i)$ 便于最后算答案，因为最终的连通块可以以任何一个点为根。</p>
+<p>暴力做还是$\mathcal O(n^3).$</p>
+<p>考虑整体DP的思想，用线段树合并优化这个事情，每个点开一个动态开点线段树，第$i$个叶子维护$F(u,i),G(u,i)$。</p>
+<p>我们要支持以下操作：</p>
+<ol>
+<li>初始化，$\forall i,F(u,i)=1$.</li>
+<li>dfs所有儿子并合并（$F(u,i)\leftarrow ^{\times}(F(v,i)+1);G(u,i)\leftarrow ^{+}G(v,i)$</li>
+<li>乘上$x^{[a_u\ge i]}$,即$\forall i\le a_u,F(u,i)\leftarrow F(u,i)x$</li>
+<li>$\forall i,G(u,i)\leftarrow^{+} F(u,i)$</li>
+<li>dp式子里面$\prod (F(v,i)+1)$所以可以最后$\forall i,F(u,i)\leftarrow^{+}1$</li>
+</ol>
+<p>上面这些操作都可以用矩阵描述（准确的说官方做法是写成一个变换，但本质是一样的），令每个点维护一个动态开点线段树维护这些矩阵就好了，唯一麻烦的是我们要合并儿子：用特种线段树合并来做这个事情，具体说就是：</p>
+<p>当前要合并点$a$和$b$.有一个为空直接返回；否则，若有一个点两个儿子都没有，就把他的标记直接乘到另一个点上；否则两边都pushdown（若需要新建节点则新建之）然后递归合并。</p>
+<p>分析一下复杂度。根据$\color{black}h\color{red}ehezhou $的指导，考虑如果线段树上每个点都是没有儿子或有恰两个儿子的，那么每次有效合并至少减掉一个点；对于有一个儿子的点，pushdown一次之后变成了有恰两个儿子的点。</p>
+<p>对$n+1$个点值都做一次，总复杂度$\mathcal O(n^2\log n)$.最后我们要用点值反推系数。这一步可以用另一种拉格朗日插值：</p>
+<p>考虑原本的插值式子：</p>
 <script type="math/tex; mode=display">
-(\sum_{i=0}(-1)^ix^{\frac{3k^2\pm k}{2}})\times(\sum_{i=0}p(i)x^i)=1</script><p>能对$p(i)$产生贡献的项是$\mathcal O(\sqrt n)$级别的,所以总时间复杂度$\mathcal O(n\sqrt n)$  </p>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/231995/">code</a><br>做法二:分块背包:<br>暴力的做法显然:$f(i,j)$表示用$[1,i]$的数凑出$j$的方案数.转移类似完全背包,时空都是$\mathcal O(n^2)$    </p>
-<p>考虑取一整数$m$,用$g(i,j)$表示用$i$个不小于$m$的数凑出$j$的方案数.    </p>
-<p>转移就是整体加一,或加入$m$这个数,即  </p>
-<script type="math/tex; mode=display">
-g(i,j)=g(i-1,j-m)+g(i-1,j-i)</script><p>显然只有$i\le n/m$的$i$是有意义的,这部分的时间复杂度是$\mathcal O(n/m\times n)$,同时用$f$算用$&lt;m$的数凑出$n$的方案数,总时间复杂度是$\mathcal O((m+n/m)n)$,显然$m=\sqrt n$的时候最优,最优的时空复杂度为$\mathcal O(n\sqrt n)$     </p>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/231995/">code</a></p>
-<h3 id="T3-1"><a href="#T3-1" class="headerlink" title="T3"></a>T3</h3><p>相比于T2,其实这题更套路.  </p>
-<p>首先$n\le 100$暗示Floyd,先求出$dis^0(i,j)$表示$i-&gt;j$不用魔法的最短距离<br>设$dis^k(i,j)$表示$i-&gt;j$恰用$k$次魔法的最短距离 (由于所有边权非负,$dis^k(i,j)$关于$k$单调递减所以$dis^k(1,n)$即为答案,求出它即可.)  </p>
-<p>若已知$dis^{k-1},dis^1$,则</p>
-<script type="math/tex; mode=display">dis^k(i,j)=\min_{1\le p\le n} \lbrace dis^{k-1}(i,p)+dis^1(p,j) \rbrace</script><p>一个广义矩阵乘法的形式,如果知道了$dis^1,$直接矩阵快速幂就好,时间复杂度$\mathcal O(n^3\log K)$<br>求$dis^1$也简单,枚举每条边$(u,v,w)$做为变成负权的那条边,那么$dis^1(s,t)=dis^0(s,u)-w +dis^0(v,t)$,时间复杂度$\mathcal O(n^2m)$  </p>
-<p>总时间复杂度$\mathcal O(n^3\log K+n^2m)$      </p>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/232078/">code</a></p>
-<p>奇怪的NOI Online比赛,出了各种锅<del>反正不要钱,就当玩玩也行</del></p>
+f(x)=\prod_iy_i\prod _{i\ne j}\frac{x-x_j}{x_i-x_j}</script><p>记$T=\prod _i(x-x_i)$,则$f(x)=\prod y_i\frac{T}{x-x_i}\prod_{i\ne j} \frac{1}{x_i-x_j}$</p>
+<p>$T$可以$O(n^2)$预处理那么求一次$\frac{T}{x-x_i}$是$O(n)$,后面$\prod_{i\ne j} \frac{1}{x_i-x_j}$ 就暴力。对$n+1$个$(x_i,y_i)$都做一次，并加到对应的系数上就好。可见代码。</p>
+<p><a target="_blank" rel="noopener" href="https://loj.ac/s/1026409">My code</a></p>
+<p>续：由于线段树合并常数惊人，所以甚至可能跑不过暴力。</p>
 
     </div>
 
@@ -260,13 +238,10 @@ g(i,j)=g(i-1,j-m)+g(i-1,j-i)</script><p>显然只有$i\le n/m$的$i$是有意义
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/10/02/%E5%AD%A6%E5%86%9B%E7%BD%91%E7%BB%9C%E8%B5%9BA-D%20%E9%A2%98%E8%A7%A3/" rel="prev" title="学军网络赛A-D题解">
-      <i class="fa fa-chevron-left"></i> 学军网络赛A-D题解
+    <a href="/2020/12/27/%E3%80%8CNOI2014%E3%80%8D%E8%B4%AD%E7%A5%A8/" rel="prev" title="「NOI2014」购票">
+      <i class="fa fa-chevron-left"></i> 「NOI2014」购票
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/10/02/%E6%B5%85%E8%B0%88%E4%B8%8A%E4%B8%8B%E7%95%8C%E7%BD%91%E7%BB%9C%E6%B5%81/" rel="next" title="浅谈上下界网络流">
-      浅谈上下界网络流 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -326,7 +301,7 @@ g(i,j)=g(i-1,j-m)+g(i-1,j-i)</script><p>显然只有$i\le n/m$的$i$是有意义
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NOI-Online-sol"><span class="nav-number">1.</span> <span class="nav-text">NOI Online sol</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E9%AB%98%E7%BB%84"><span class="nav-number">2.</span> <span class="nav-text">提高组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1"><span class="nav-number">2.1.</span> <span class="nav-text">T1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T2"><span class="nav-number">2.2.</span> <span class="nav-text">T2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T3"><span class="nav-number">2.3.</span> <span class="nav-text">T3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%AE%E5%8F%8A%E7%BB%84"><span class="nav-number">3.</span> <span class="nav-text">普及组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1-1"><span class="nav-number">3.1.</span> <span class="nav-text">T1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T2-1"><span class="nav-number">3.2.</span> <span class="nav-text">T2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T3-1"><span class="nav-number">3.3.</span> <span class="nav-text">T3</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%80%8C%E4%B9%9D%E7%9C%81%E8%81%94%E8%80%83-2018%E3%80%8D%E7%A7%98%E5%AF%86%E8%A2%AD%E5%87%BB"><span class="nav-number">1.</span> <span class="nav-text">「九省联考 2018」秘密袭击</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9A%B4%E5%8A%9B"><span class="nav-number">1.1.</span> <span class="nav-text">暴力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E5%81%9A%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">我的做法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E5%81%9A%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">官方做法</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
