@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2021/02/04/%E3%80%8CWC2019%E3%80%8D%E6%95%B0%E6%A0%91/</loc>
+    
+    <lastmod>2021-02-04</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2021/02/02/NOIP2020/</loc>
     
     <lastmod>2021-02-02</lastmod>
@@ -249,7 +256,7 @@
 
   <url>
     <loc>http://yoursite.com/</loc>
-    <lastmod>2021-02-02</lastmod>
+    <lastmod>2021-02-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
